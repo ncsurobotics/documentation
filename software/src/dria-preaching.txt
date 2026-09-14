@@ -1,0 +1,22 @@
+- Rust learning
+	- Read the book
+	- Do rustlings things?
+- Where are the repos
+- What are the repos
+- Where are the things in the repos
+- What are the things in the repos
+- How vision
+	- What yolo
+	- What opencv
+- How comms
+- Running the code
+- What is our hardware
+- Histoey
+- How contrib
+	- What bad?
+	- Fix bad
+	- Push fix bad to place
+	- Merge place into main place
+- SVG thingy with links to the things that need to be located (whatever they may be [like missions {or vission}])
+- Goodberry's
+	- ~Bike~ car
