@@ -1,0 +1,7 @@
+[book]
+title = "AquaPack Robotics Mechanical Documentation"
+authors = ["AquaPack Robotics"]
+language = "en"
+
+[output.html]
+site-url = "/mechanical/"
