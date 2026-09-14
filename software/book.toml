@@ -2,3 +2,6 @@
 title = "AquaPack Robotics Software Documentation"
 authors = ["AquaPack Robotics"]
 language = "en"
+
+[output.html]
+site-url = "/software/"
