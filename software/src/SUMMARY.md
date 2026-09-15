@@ -44,3 +44,4 @@
 - [ZED](./hardware_provisioning/zed.md)
 # Vision
 - [Active Learning Pipeline](./vision/active_learning_pipeline.md)
+- [Documentation Draft](./vision/ALP_doc.txt)
