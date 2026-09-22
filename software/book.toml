@@ -5,3 +5,4 @@ language = "en"
 
 [output.html]
 site-url = "/software/"
+additional-css = ["css/svg.css"]
