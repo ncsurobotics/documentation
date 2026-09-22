@@ -11,9 +11,13 @@ There is no root landing page. Preview a book with `mdbook serve software`
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds the books, collects prebuilt Rust docs,
-and deploys everything together. It caches mdBook and runs on pushes to `main`,
-daily, or manually. Pull requests build without deploying.
+`.github/workflows/pages.yml` builds the books and the Rust docs from the committed
+submodule revisions, and deploys everything together. It caches Cargo builds and
+runs on pushes to `main` or manually. Pull requests build without deploying.
+
+`.github/workflows/update-submodules.yml` updates submodules on `main` weekly
+or when manually triggered. After committing and pushing any changes,
+it explicitly triggers the Pages workflow on `main`, even if no revisions changed.
 
 In this repository's **Settings → Pages**, select **GitHub Actions** and set
 the custom domain to `docs.aquapackrobotics.org`. Add a DNS CNAME record for
@@ -23,23 +27,25 @@ See [GitHub's domain setup guide](https://docs.github.com/en/pages/configuring-a
 
 ## Rust documentation
 
-SW9S and AUVControlBoard own their Rust documentation builds. Their workflows
-should build from `main`, cache Cargo dependencies with `Swatinem/rust-cache@v2`,
-run `cargo doc --workspace --no-deps --locked`, and publish the **contents** of
-`target/doc/` to a `rustdoc` branch in their own repository. They can use a branch
-publishing action with their own `GITHUB_TOKEN` and `contents: write` permission;
-no cross-repository write token or separate Pages site is needed.
+The Pages workflow checks out the committed submodule revisions recursively and runs
+`cargo doc --workspace --no-deps --locked` in each project under
+`software/external/` that has a root `Cargo.toml`. SW9-MSB contains hardware
+design files and is skipped. Rust build failures fail the deployment build.
+The workflow uses the runner's preinstalled Rust toolchain, caches Cargo
+dependencies and build outputs with `actions/cache`, and installs `libudev-dev`
+for the serial library dependencies.
 
-This repo copies those branches into:
+The generated documentation is published at:
 
-- `/software/crates/sw9s/`
-- `/software/crates/auv-control-board/`
+- `/software/external/SW9S/`
+- `/software/external/AUVControlBoard/`
 
 Rustdoc adds the crate target directory, for example
-`/software/crates/auv-control-board/auv_control_board/`. Each complete Rustdoc tree
-is preserved so its assets and links work. Projects without a `rustdoc` branch
-are skipped with a workflow warning until their publishing workflow is set up.
-New Rust docs appear on the next daily run or a manual run of this workflow.
-
-The Rust publishing workflows still need to be added in their respective repos.
-SW9S should target `main` after the rewrite merges.
+`/software/external/AUVControlBoard/auv_control_board/`. Each complete Rustdoc tree
+is preserved so its assets and links work. Additional Rust submodules use their
+directory name unchanged under `/software/external/`. The submodule update workflow
+uses `git submodule update --init --remote --recursive` to fetch the latest
+commit from each submodule's configured tracking branch (the remote default branch
+unless configured otherwise in `.gitmodules`). It commits changed submodule pointers
+and pushes them to `main` using the GitHub Actions bot. The Pages workflow only
+builds and deploys documentation. No separate `rustdoc` branches are needed.
