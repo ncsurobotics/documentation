@@ -1,0 +1,32 @@
+---
+import DefaultHero from '@astrojs/starlight/components/Hero.astro';
+import logo from '../assets/header_logo.svg?raw';
+
+const { entry } = Astro.locals.starlightRoute;
+if (Astro.url.pathname === '/' && entry.data.hero) {
+  entry.data.hero.image = {
+    html: `<span class="hero-logo" role="img" aria-label="AquaPack Robotics logo">${logo}</span>`,
+    alt: '',
+  };
+}
+---
+
+<DefaultHero />
+
+<style>
+  :global(.hero-logo) {
+    display: block;
+    width: 100%;
+    color: var(--sl-color-white);
+  }
+
+  :global(.hero-logo svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  :global(.hero-logo .sub) {
+    fill: var(--aquapack-red);
+  }
+</style>

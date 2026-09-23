@@ -1,0 +1,118 @@
+/* Adapted from the main site's src/_data/designTokens/colors.json:
+ * https://github.com/ncsurobotics/ncsurobotics.github.io/blob/main/src/_data/designTokens/colors.json
+ */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../assets/fonts/atkinson/atkinson-hyperlegible-regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../assets/fonts/atkinson/atkinson-hyperlegible-bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../assets/fonts/atkinson/atkinson-hyperlegible-italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --aquapack-gray-100: #f7f8fb;
+  --aquapack-gray-200: #e3e4e8;
+  --aquapack-gray-300: #adaeb1;
+  --aquapack-gray-400: #7e8086;
+  --aquapack-gray-500: #61636a;
+  --aquapack-gray-600: #46474f;
+  --aquapack-gray-700: #393a40;
+  --aquapack-gray-800: #2c2d33;
+  --aquapack-gray-900: #15161a;
+  --aquapack-red: #c00000;
+  --aquapack-red-subdued: #b13125;
+  --aquapack-reynolds-red: #900000;
+  --aquapack-pink: #dd4462;
+
+  /* Starlight's default theme is dark. */
+  --sl-color-white: var(--aquapack-gray-100);
+  --sl-color-gray-1: var(--aquapack-gray-200);
+  --sl-color-gray-2: var(--aquapack-gray-300);
+  --sl-color-gray-3: var(--aquapack-gray-400);
+  --sl-color-gray-4: var(--aquapack-gray-500);
+  --sl-color-gray-5: var(--aquapack-gray-700);
+  --sl-color-gray-6: var(--aquapack-gray-800);
+  --sl-color-black: var(--aquapack-gray-900);
+  --sl-color-text: var(--aquapack-gray-100);
+  --sl-color-bg: var(--aquapack-gray-900);
+  --sl-color-bg-nav: var(--aquapack-gray-800);
+  --sl-color-bg-sidebar: var(--aquapack-gray-800);
+  --sl-font: 'Atkinson Hyperlegible', sans-serif;
+  --sl-font-mono: 'Atkinson Hyperlegible', sans-serif;
+
+  --sl-color-accent-low: color-mix(in srgb, var(--aquapack-red) 25%, var(--aquapack-gray-900));
+  --sl-color-accent: var(--aquapack-red);
+  --sl-color-accent-high: color-mix(in srgb, var(--aquapack-pink) 75%, var(--aquapack-gray-100));
+}
+
+.splash-team-button {
+  background: var(--aquapack-gray-700) !important;
+  border: 3px solid var(--aquapack-gray-700) !important;
+  color: var(--aquapack-gray-100) !important;
+}
+
+.splash-team-button:hover,
+.splash-team-button:focus-visible {
+  border: 3px solid var(--aquapack-red-subdued) !important;
+}
+
+/* The splash page is a single-screen navigation page. */
+html[data-has-hero] {
+  overflow-y: hidden;
+  --sl-color-bg-nav: var(--sl-color-bg);
+}
+
+.social-icons a {
+  color: var(--sl-color-white);
+}
+
+.social-icons a:hover {
+  color: var(--sl-color-text-accent);
+}
+
+:root[data-theme='light'] {
+  --sl-color-white: var(--aquapack-gray-800);
+  --sl-color-gray-1: var(--aquapack-gray-800);
+  --sl-color-gray-2: var(--aquapack-gray-700);
+  --sl-color-gray-3: var(--aquapack-gray-500);
+  --sl-color-gray-4: var(--aquapack-gray-400);
+  --sl-color-gray-5: var(--aquapack-gray-300);
+  --sl-color-gray-6: var(--aquapack-gray-200);
+  --sl-color-gray-7: var(--aquapack-gray-100);
+  --sl-color-black: #ffffff;
+  --sl-color-text: var(--aquapack-gray-800);
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: var(--sl-color-bg);
+  --sl-color-bg-sidebar: var(--sl-color-bg);
+
+  --sl-color-accent-low: color-mix(in srgb, var(--aquapack-red) 10%, white);
+  --sl-color-accent: var(--aquapack-red);
+  --sl-color-accent-high: var(--aquapack-reynolds-red);
+}
+
+:root[data-theme='light'] .splash-team-button {
+  background: var(--aquapack-gray-200) !important;
+  border-color: var(--aquapack-gray-200) !important;
+  color: var(--aquapack-gray-800) !important;
+}
+
+:root[data-theme='light'] .splash-team-button:hover,
+:root[data-theme='light'] .splash-team-button:focus-visible {
+  border-color: var(--aquapack-red-subdued) !important;
+}

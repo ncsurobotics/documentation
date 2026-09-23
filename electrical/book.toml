@@ -1,7 +1,0 @@
-[book]
-title = "AquaPack Robotics Electrical Documentation"
-authors = ["AquaPack Robotics"]
-language = "en"
-
-[output.html]
-site-url = "/electrical/"

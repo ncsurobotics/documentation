@@ -1,0 +1,17 @@
+---
+import diagram from '../../public/software/sw_arch_min.svg?raw';
+---
+
+<div class="architecture" role="img" aria-label="Software architecture" set:html={diagram} />
+
+<style>
+  .architecture {
+    color: var(--sl-color-text);
+  }
+
+  .architecture :global(svg) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

@@ -1,9 +1,9 @@
-[submodule "software/external/SW9S"]
-	path = software/external/SW9S
+[submodule "external/software/SW9S"]
+	path = external/software/SW9S
 	url = git@github.com:ncsurobotics/SW9S.git
-[submodule "software/external/AUVControlBoard"]
-	path = software/external/AUVControlBoard
+[submodule "external/software/AUVControlBoard"]
+	path = external/software/AUVControlBoard
 	url = git@github.com:ncsurobotics/AUVControlBoard.git
-[submodule "software/external/SW9-MSB"]
-	path = software/external/SW9-MSB
+[submodule "external/software/SW9-MSB"]
+	path = external/software/SW9-MSB
 	url = git@github.com:ncsurobotics/SW9-MSB.git

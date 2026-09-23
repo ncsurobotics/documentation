@@ -16,8 +16,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      MDBOOK_VERSION: '0.5.4'
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,20 +30,18 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             target/debug
-          key: ${{ runner.os }}-${{ runner.arch }}-cargo-shared-${{ hashFiles('software/external/**/Cargo.lock') }}
-      - name: Install mdBook
-        run: |
-          mkdir -p "$HOME/.local/bin"
-          curl -fsSL --retry 3 "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" | tar -xz -C "$HOME/.local/bin" mdbook
-      - name: Build books
-        run: |
-          for team in software electrical mechanical; do
-            "$HOME/.local/bin/mdbook" build "$team" --dest-dir "$GITHUB_WORKSPACE/_site/$team"
-          done
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-shared-${{ hashFiles('external/software/**/Cargo.lock') }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build documentation site
+        run: npm run build
       - name: Build Rust documentation from submodules
         run: |
           target_dir="$GITHUB_WORKSPACE/target"
-          for project in software/external/*; do
+          for project in external/software/*; do
             if [[ ! -f "$project/Cargo.toml" ]]; then
               echo "Skipping $project: no Cargo.toml."
               continue
@@ -55,9 +51,9 @@ jobs:
               cargo doc --workspace --no-deps --locked --target-dir "$target_dir"
             )
           done
-          mkdir -p "_site/software/external/rust"
+          mkdir -p "_site/external/software/rust"
           if [[ -d "$target_dir/doc" ]]; then
-            rsync -a "$target_dir/doc/" "_site/software/external/rust/"
+            rsync -a "$target_dir/doc/" "_site/external/software/rust/"
           fi
       - name: Configure site
         run: |

@@ -1,17 +1,36 @@
 # AquaPack Robotics Documentation
 
-Three mdBooks share https://docs.aquapackrobotics.org:
+One Astro + Starlight site at https://docs.aquapackrobotics.org contains a homepage
+and three documentation sections, selected using the sidebar dropdown:
 
 - `/software/`
 - `/electrical/`
 - `/mechanical/`
 
-There is no root landing page. Preview a book with `mdbook serve software`
-(or `electrical` / `mechanical`), using mdBook 0.5.4.
+## Local development
+
+Use Node.js 24 LTS. With Nix, enter a shell using `nix shell nixpkgs#nodejs_24`.
+
+```sh
+npm ci
+npm run dev
+```
+
+Run `npm run build` to generate `_site/`, or `npm run preview` to preview that
+build. Write Markdown in `src/content/docs/<team>/` with a `title` in YAML
+frontmatter. Sidebars use directory names as group labels, so name nested folders
+for display (for example, `Hardware Provisioning` or `Quickstart`). Use explicit
+`slug` values to keep URLs stable and `index.md` for a group's overview page.
+Sidebars are generated from those directories; use `sidebar.order`
+in frontmatter to control ordering. The team dropdown is configured in
+`astro.config.mjs`, and the homepage is `src/content/docs/index.md`.
+
+Static files live in `public/`. Rust documentation is added by CI after the Astro
+build, so Rust API links require a deployment or a separate local Cargo docs build.
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds the books and the Rust docs from the committed
+`.github/workflows/pages.yml` builds the Starlight site and the Rust docs from the committed
 submodule revisions, and deploys everything together. It caches Cargo builds and
 runs on pushes to `main` or manually. Pull requests build without deploying.
 
@@ -29,7 +48,7 @@ See [GitHub's domain setup guide](https://docs.github.com/en/pages/configuring-a
 
 The Pages workflow checks out the committed submodule revisions recursively and runs
 `cargo doc --workspace --no-deps --locked` in each project under
-`software/external/` that has a root `Cargo.toml`. SW9-MSB contains hardware
+`external/software/` that has a root `Cargo.toml`. SW9-MSB contains hardware
 design files and is skipped. Rust build failures fail the deployment build.
 The workflow uses the runner's preinstalled Rust toolchain, caches Cargo
 dependencies and build outputs with `actions/cache`, and installs `libudev-dev`
@@ -37,11 +56,11 @@ for the serial library dependencies.
 
 All crates build into a shared Cargo target directory. Rustdoc combines their
 navigation and search data, and the workflow publishes the complete documentation
-tree under `/software/external/rust/`. Crates can be linked to individually from
-the mdBook pages; no Rust documentation landing page is generated:
+tree under `/external/software/rust/`. Crates can be linked to individually from
+the Starlight pages; no Rust documentation landing page is generated:
 
-- `/software/external/rust/sw9s/`
-- `/software/external/rust/auv_control_board/`
+- `/external/software/rust/sw9s/`
+- `/external/software/rust/auv_control_board/`
 
 URLs use Rust crate names, without an enclosing submodule directory. Shared assets
 and source pages are preserved alongside the crate pages. Only compiled build

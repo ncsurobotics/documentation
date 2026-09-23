@@ -1,0 +1,19 @@
+{
+  "name": "aquapack-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.3",
+    "astro": "^7.3.4",
+    "starlight-sidebar-topics": "^0.9.0",
+    "starlight-sidebar-topics-dropdown": "^0.6.0"
+  }
+}
