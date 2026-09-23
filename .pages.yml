@@ -1,0 +1,37 @@
+media:
+  input: public/uploads
+  output: /uploads
+
+content:
+  - name: homepage
+    label: Homepage
+    type: file
+    path: src/content/docs/index.md
+    format: yaml-frontmatter
+
+  - name: software
+    label: Software
+    type: collection
+    path: src/content/docs/software
+    format: yaml-frontmatter
+    subfolders: true
+    view:
+      layout: tree
+
+  - name: mechanical
+    label: Mechanical
+    type: collection
+    path: src/content/docs/mechanical
+    format: yaml-frontmatter
+    subfolders: true
+    view:
+      layout: tree
+
+  - name: electrical
+    label: Electrical
+    type: collection
+    path: src/content/docs/electrical
+    format: yaml-frontmatter
+    subfolders: true
+    view:
+      layout: tree
