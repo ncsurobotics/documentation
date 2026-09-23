@@ -1,6 +1,68 @@
 media:
-  input: public/uploads
-  output: /uploads
+  input: public
+  output: /
+
+components:
+  sidebar:
+    type: object
+    label: Sidebar
+    fields:
+      - { name: label, label: Label, type: string }
+      - { name: order, label: Order, type: number }
+      - { name: hidden, label: Hidden, type: boolean }
+      - name: badge
+        label: Badge
+        type: code
+        options: { format: yaml }
+      - name: attrs
+        label: Attributes
+        type: code
+        options: { format: yaml }
+
+  hero-image:
+    type: object
+    label: Image
+    fields:
+      - { name: file, label: Image file, type: file }
+      - { name: dark, label: Dark mode image, type: file }
+      - { name: light, label: Light mode image, type: file }
+      - { name: alt, label: Alt text, type: string }
+      - name: html
+        label: HTML or inline SVG
+        type: code
+        options: { format: html }
+
+  hero:
+    type: object
+    label: Hero
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: tagline, label: Tagline, type: text }
+      - name: image
+        component: hero-image
+      - name: actions
+        label: Actions
+        type: object
+        list: true
+        fields:
+          - { name: text, label: Text, type: string, required: true }
+          - { name: link, label: Link, type: string, required: true }
+          - name: variant
+            label: Variant
+            type: select
+            options:
+              values: [primary, secondary, minimal]
+          - { name: icon, label: Icon, type: string }
+          - name: attrs
+            label: Attributes
+            type: code
+            options: { format: yaml }
+
+  banner:
+    type: object
+    label: Banner
+    fields:
+      - { name: content, label: Content, type: rich-text }
 
 content:
   - name: homepage
@@ -8,6 +70,58 @@ content:
     type: file
     path: src/content/docs/index.md
     format: yaml-frontmatter
+    fields: &page-fields
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: Description, type: text }
+      - { name: slug, label: Slug, type: string }
+      - name: editUrl
+        label: Edit URL
+        type: code
+        options: { format: yaml }
+      - name: head
+        label: Head tags
+        type: object
+        list: true
+        fields:
+          - { name: tag, label: Tag, type: string, required: true }
+          - { name: content, label: Content, type: text }
+          - name: attrs
+            label: Attributes
+            type: code
+            options: { format: yaml }
+      - name: tableOfContents
+        label: Table of contents
+        type: code
+        options: { format: yaml }
+      - name: template
+        label: Template
+        type: select
+        options:
+          values: [doc, splash]
+      - name: hero
+        component: hero
+      - name: banner
+        component: banner
+      - name: lastUpdated
+        label: Last updated
+        type: code
+        options: { format: yaml }
+      - name: prev
+        label: Previous page
+        type: code
+        options: { format: yaml }
+      - name: next
+        label: Next page
+        type: code
+        options: { format: yaml }
+      - { name: pagefind, label: Include in search, type: boolean }
+      - { name: draft, label: Draft, type: boolean }
+      - name: sidebar
+        component: sidebar
+      - name: body
+        label: Body
+        type: code
+        options: { format: mdx }
 
   - name: software
     label: Software
@@ -15,8 +129,19 @@ content:
     path: src/content/docs/software
     format: yaml-frontmatter
     subfolders: true
+    exclude: [index.mdx]
+    fields: *page-fields
     view:
       layout: tree
+      fields: [title, sidebar.order]
+      primary: title
+
+  - name: software-homepage
+    label: Software homepage
+    type: file
+    path: src/content/docs/software/index.mdx
+    format: yaml-frontmatter
+    fields: *page-fields
 
   - name: mechanical
     label: Mechanical
@@ -24,8 +149,11 @@ content:
     path: src/content/docs/mechanical
     format: yaml-frontmatter
     subfolders: true
+    fields: *page-fields
     view:
       layout: tree
+      fields: [title, sidebar.order]
+      primary: title
 
   - name: electrical
     label: Electrical
@@ -33,5 +161,8 @@ content:
     path: src/content/docs/electrical
     format: yaml-frontmatter
     subfolders: true
+    fields: *page-fields
     view:
       layout: tree
+      fields: [title, sidebar.order]
+      primary: title

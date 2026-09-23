@@ -27,9 +27,9 @@ in frontmatter to control ordering. The team dropdown is configured in
 
 Pages CMS is configured in `.pages.yml`. It exposes the homepage and the
 Software, Mechanical, and Electrical content directories to the hosted Pages
-CMS application. Content is intentionally kept in raw file editing mode so
-Starlight frontmatter and the Software MDX component import remain intact. The
-CMS can store uploaded media in `public/uploads`.
+CMS application. Documentation entries expose title, description, sidebar
+ordering, all Starlight page metadata, and an MDX body. The CMS can store
+uploaded media in `public/`.
 
 Static files live in `public/`. Rust documentation is added by CI after the Astro
 build, so Rust API links require a deployment or a separate local Cargo docs build.
