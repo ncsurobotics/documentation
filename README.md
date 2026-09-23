@@ -37,10 +37,11 @@ for the serial library dependencies.
 
 All crates build into a shared Cargo target directory. Rustdoc combines their
 navigation and search data, and the workflow publishes the complete documentation
-tree at `/software/external/`, with a landing page listing the generated crates:
+tree under `/software/external/rust/`. Crates can be linked to individually from
+the mdBook pages; no Rust documentation landing page is generated:
 
-- `/software/external/sw9s/`
-- `/software/external/auv_control_board/`
+- `/software/external/rust/sw9s/`
+- `/software/external/rust/auv_control_board/`
 
 URLs use Rust crate names, without an enclosing submodule directory. Shared assets
 and source pages are preserved alongside the crate pages. Only compiled build

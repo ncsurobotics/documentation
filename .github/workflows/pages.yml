@@ -55,26 +55,10 @@ jobs:
               cargo doc --workspace --no-deps --locked --target-dir "$target_dir"
             )
           done
-          mkdir -p "_site/software/external"
+          mkdir -p "_site/software/external/rust"
           if [[ -d "$target_dir/doc" ]]; then
-            rsync -a "$target_dir/doc/" "_site/software/external/"
+            rsync -a "$target_dir/doc/" "_site/software/external/rust/"
           fi
-      - name: Build Rust documentation landing page
-        run: |
-          doc_dir="_site/software/external"
-          {
-            printf '%s\n' '<!doctype html>' '<html lang="en">' '<head>' \
-              '<meta charset="utf-8">' '<meta name="viewport" content="width=device-width, initial-scale=1">' \
-              '<title>AquaPack Rust documentation</title>' '</head>' '<body>' \
-              '<h1>AquaPack Rust documentation</h1>' '<ul>'
-            for index in "$doc_dir"/*/index.html; do
-              [[ -f "$index" ]] || continue
-              crate="${index%/index.html}"
-              crate="${crate##*/}"
-              printf '<li><a href="%s/">%s</a></li>\n' "$crate" "$crate"
-            done
-            printf '%s\n' '</ul>' '</body>' '</html>'
-          } > "$doc_dir/index.html"
       - name: Configure site
         run: |
           printf '%s\n' docs.aquapackrobotics.org > _site/CNAME
