@@ -35,15 +35,17 @@ The workflow uses the runner's preinstalled Rust toolchain, caches Cargo
 dependencies and build outputs with `actions/cache`, and installs `libudev-dev`
 for the serial library dependencies.
 
-The generated documentation is published at:
+All crates build into a shared Cargo target directory. Rustdoc combines their
+navigation and search data, and the workflow publishes the complete documentation
+tree at `/software/external/`, with a landing page listing the generated crates:
 
-- `/software/external/SW9S/`
-- `/software/external/AUVControlBoard/`
+- `/software/external/sw9s/`
+- `/software/external/auv_control_board/`
 
-Rustdoc adds the crate target directory, for example
-`/software/external/AUVControlBoard/auv_control_board/`. Each complete Rustdoc tree
-is preserved so its assets and links work. Additional Rust submodules use their
-directory name unchanged under `/software/external/`. The submodule update workflow
+URLs use Rust crate names, without an enclosing submodule directory. Shared assets
+and source pages are preserved alongside the crate pages. Only compiled build
+outputs are cached; documentation is regenerated each run to avoid stale crates.
+The submodule update workflow
 uses `git submodule update --init --remote --recursive` to fetch the latest
 commit from each submodule's configured tracking branch (the remote default branch
 unless configured otherwise in `.gitmodules`). It commits changed submodule pointers

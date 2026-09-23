@@ -31,8 +31,8 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            software/external/*/target/debug
-          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('software/external/**/Cargo.lock') }}
+            target/debug
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-shared-${{ hashFiles('software/external/**/Cargo.lock') }}
       - name: Install mdBook
         run: |
           mkdir -p "$HOME/.local/bin"
@@ -44,19 +44,37 @@ jobs:
           done
       - name: Build Rust documentation from submodules
         run: |
+          target_dir="$GITHUB_WORKSPACE/target"
           for project in software/external/*; do
             if [[ ! -f "$project/Cargo.toml" ]]; then
               echo "Skipping $project: no Cargo.toml."
               continue
             fi
-            target_dir="$GITHUB_WORKSPACE/$project/target"
             (
               cd "$project"
               cargo doc --workspace --no-deps --locked --target-dir "$target_dir"
             )
-            mkdir -p "_site/$project"
-            rsync -a "$target_dir/doc/" "_site/$project/"
           done
+          mkdir -p "_site/software/external"
+          if [[ -d "$target_dir/doc" ]]; then
+            rsync -a "$target_dir/doc/" "_site/software/external/"
+          fi
+      - name: Build Rust documentation landing page
+        run: |
+          doc_dir="_site/software/external"
+          {
+            printf '%s\n' '<!doctype html>' '<html lang="en">' '<head>' \
+              '<meta charset="utf-8">' '<meta name="viewport" content="width=device-width, initial-scale=1">' \
+              '<title>AquaPack Rust documentation</title>' '</head>' '<body>' \
+              '<h1>AquaPack Rust documentation</h1>' '<ul>'
+            for index in "$doc_dir"/*/index.html; do
+              [[ -f "$index" ]] || continue
+              crate="${index%/index.html}"
+              crate="${crate##*/}"
+              printf '<li><a href="%s/">%s</a></li>\n' "$crate" "$crate"
+            done
+            printf '%s\n' '</ul>' '</body>' '</html>'
+          } > "$doc_dir/index.html"
       - name: Configure site
         run: |
           printf '%s\n' docs.aquapackrobotics.org > _site/CNAME
