@@ -81,7 +81,10 @@ components:
       - name: actions
         label: Actions
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.text}"
         fields:
           - name: text
             label: Text
@@ -152,7 +155,10 @@ content:
       - name: head
         label: Head tags
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.tag}"
         description: Additional HTML tags to add to the page head.
         fields:
           - name: tag
