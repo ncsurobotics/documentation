@@ -25,16 +25,6 @@ components:
         type: code
         description: Add a sidebar badge as a string or BadgeConfig object.
         options: { format: yaml }
-      - name: attrs
-        label: Attributes
-        type: object
-        description: HTML attributes to add to the page link in the sidebar.
-        fields:
-          - { name: class, label: Class, type: string }
-          - { name: id, label: ID, type: string }
-          - { name: target, label: Target, type: string }
-          - { name: rel, label: Relationship, type: string }
-          - { name: download, label: Download, type: string }
 
   hero-image:
     type: object
@@ -133,26 +123,30 @@ content:
     type: file
     path: src/content/docs/index.mdx
     format: yaml-frontmatter
-    fields: &page-fields
-      - name: title
+    fields:
+      - &title-field
+        name: title
         label: Title
         type: string
         required: true
         description: Page title shown at the top of the page, in browser tabs, and in metadata.
-      - name: description
+      - &description-field
+        name: description
         label: Description
         type: text
         description: Page description used in metadata, search engines, and social previews.
-      - name: slug
+      - &slug-field
+        name: slug
         label: Slug
         type: string
         description: Optional custom URL slug for this page.
-      - name: editUrl
+      - &edit-url-field
+        name: editUrl
         label: Edit URL
-        type: code
-        description: Override the edit-page link, disable it with false, or provide another URL.
-        options: { format: yaml }
-      - name: head
+        type: string
+        description: Override the edit-page link with a custom URL.
+      - &head-field
+        name: head
         label: Head tags
         type: object
         list:
@@ -181,47 +175,26 @@ content:
               - { name: property, label: Property, type: string }
               - { name: rel, label: Relationship, type: string }
               - { name: href, label: Href, type: string }
-      - name: tableOfContents
-        label: Table of contents
-        type: code
-        description: Set false to hide the table of contents, or configure its heading levels.
-        options: { format: yaml }
-      - name: template
-        label: Template
-        type: select
-        description: Choose the standard documentation layout or the wider splash layout.
-        options:
-          values: [doc, splash]
       - name: hero
         component: hero
-      - name: banner
+      - &banner-field
+        name: banner
         component: banner
-      - name: lastUpdated
-        label: Last updated
-        type: code
-        description: Override the Git history date, or set false to hide the last-updated display.
-        options: { format: yaml }
-      - name: prev
-        label: Previous page
-        type: code
-        description: Override or hide the previous-page pagination link.
-        options: { format: yaml }
-      - name: next
-        label: Next page
-        type: code
-        description: Override or hide the next-page pagination link.
-        options: { format: yaml }
-      - name: pagefind
+      - &pagefind-field
+        name: pagefind
         label: Include in search
         type: boolean
         description: Include this page in the Pagefind search index.
-      - name: draft
+      - &draft-field
+        name: draft
         label: Draft
         type: boolean
         description: Exclude this page from production builds while keeping it visible during development.
-      - name: sidebar
+      - &sidebar-field
+        name: sidebar
         component: sidebar
-      - name: body
+      - &body-field
+        name: body
         label: Body
         type: code
         description: MDX page content.
@@ -234,7 +207,17 @@ content:
     filename: "{primary}.mdx"
     format: yaml-frontmatter
     subfolders: true
-    fields: *page-fields
+    fields: &page-fields
+      - *title-field
+      - *description-field
+      - *slug-field
+      - *edit-url-field
+      - *head-field
+      - *banner-field
+      - *pagefind-field
+      - *draft-field
+      - *sidebar-field
+      - *body-field
     view:
       layout: tree
       node:
