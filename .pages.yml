@@ -27,9 +27,14 @@ components:
         options: { format: yaml }
       - name: attrs
         label: Attributes
-        type: code
+        type: object
         description: HTML attributes to add to the page link in the sidebar.
-        options: { format: yaml }
+        fields:
+          - { name: class, label: Class, type: string }
+          - { name: id, label: ID, type: string }
+          - { name: target, label: Target, type: string }
+          - { name: rel, label: Relationship, type: string }
+          - { name: download, label: Download, type: string }
 
   hero-image:
     type: object
@@ -100,9 +105,14 @@ components:
             description: Starlight icon name displayed with the action.
           - name: attrs
             label: Attributes
-            type: code
+            type: object
             description: HTML attributes added to the action link.
-            options: { format: yaml }
+            fields:
+              - { name: class, label: Class, type: string }
+              - { name: id, label: ID, type: string }
+              - { name: target, label: Target, type: string }
+              - { name: rel, label: Relationship, type: string }
+              - { name: download, label: Download, type: string }
 
   banner:
     type: object
@@ -156,9 +166,15 @@ content:
             description: Text content for the head tag.
           - name: attrs
             label: Attributes
-            type: code
+            type: object
             description: Attributes for the generated head tag.
-            options: { format: yaml }
+            fields:
+              - { name: charset, label: Charset, type: string }
+              - { name: name, label: Name, type: string }
+              - { name: content, label: Content, type: string }
+              - { name: property, label: Property, type: string }
+              - { name: rel, label: Relationship, type: string }
+              - { name: href, label: Href, type: string }
       - name: tableOfContents
         label: Table of contents
         type: code
