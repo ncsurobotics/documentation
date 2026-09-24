@@ -4,18 +4,18 @@
 
 ## Build locally
 
-Install Node.js 24, or use `nix shell nixpkgs#nodejs_24`, then run:
+Install [Bun](https://bun.sh/docs/installation), then run:
 
 ```sh
-npm ci
-npm run dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
 Open the local URL printed in the terminal. To build and preview the production site:
 
 ```sh
-npm run build
-npm run preview
+bun run build
+bun run preview
 ```
 
 The build output is in `_site/`. Rust API documentation is generated separately by CI

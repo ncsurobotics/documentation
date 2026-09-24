@@ -9,14 +9,14 @@ and three documentation sections, selected using the sidebar dropdown:
 
 ## Local development
 
-Use Node.js 24 LTS. With Nix, enter a shell using `nix shell nixpkgs#nodejs_24`.
+Use Bun. The version used by CI is pinned in `package.json`.
 
 ```sh
-npm ci
-npm run dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Run `npm run build` to generate `_site/`, or `npm run preview` to preview that
+Run `bun run build` to generate `_site/`, or `bun run preview` to preview that
 build. Write MDX in `src/content/docs/<team>/` with a `title` in YAML
 frontmatter. Sidebars use directory names as group labels, so name nested folders
 for display (for example, `Hardware Provisioning` or `Quickstart`). Use

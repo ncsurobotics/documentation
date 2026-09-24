@@ -31,13 +31,10 @@ jobs:
             ~/.cargo/git
             target/debug
           key: ${{ runner.os }}-${{ runner.arch }}-cargo-shared-${{ hashFiles('external/software/**/Cargo.lock') }}
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
       - name: Build documentation site
-        run: npm run build
+        run: bun run build
       - name: Build Rust documentation from submodules
         run: |
           target_dir="$GITHUB_WORKSPACE/target"

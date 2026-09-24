@@ -3,13 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "dev": "bun --bun astro dev",
+    "build": "bun --bun astro build",
+    "preview": "bun --bun astro preview"
   },
-  "engines": {
-    "node": ">=22.12.0"
-  },
+  "packageManager": "bun@1.4.2",
   "dependencies": {
     "@astrojs/starlight": "^0.42.3",
     "astro": "^7.3.4",
