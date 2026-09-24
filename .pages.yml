@@ -1,3 +1,8 @@
+settings:
+  content:
+    # Preserve frontmatter that is not exposed in the editor, including the splash template.
+    merge: true
+
 media:
   input: public
   output: /
@@ -124,10 +129,6 @@ content:
     path: src/content/docs/index.mdx
     format: yaml-frontmatter
     fields:
-      # Preserve the homepage layout when Pages CMS saves its frontmatter.
-      - name: template
-        type: string
-        hidden: true
       - &title-field
         name: title
         label: Title
