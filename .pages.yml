@@ -68,7 +68,7 @@ content:
   - name: homepage
     label: Homepage
     type: file
-    path: src/content/docs/index.md
+    path: src/content/docs/index.mdx
     format: yaml-frontmatter
     fields: &page-fields
       - { name: title, label: Title, type: string, required: true }
@@ -129,19 +129,13 @@ content:
     path: src/content/docs/software
     format: yaml-frontmatter
     subfolders: true
-    exclude: [index.mdx]
     fields: *page-fields
     view:
       layout: tree
+      node:
+        filename: index.mdx
       fields: [title, sidebar.order]
       primary: title
-
-  - name: software-homepage
-    label: Software homepage
-    type: file
-    path: src/content/docs/software/index.mdx
-    format: yaml-frontmatter
-    fields: *page-fields
 
   - name: mechanical
     label: Mechanical
@@ -152,6 +146,8 @@ content:
     fields: *page-fields
     view:
       layout: tree
+      node:
+        filename: index.mdx
       fields: [title, sidebar.order]
       primary: title
 
@@ -164,5 +160,7 @@ content:
     fields: *page-fields
     view:
       layout: tree
+      node:
+        filename: index.mdx
       fields: [title, sidebar.order]
       primary: title

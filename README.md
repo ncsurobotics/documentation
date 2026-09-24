@@ -17,13 +17,13 @@ npm run dev
 ```
 
 Run `npm run build` to generate `_site/`, or `npm run preview` to preview that
-build. Write Markdown in `src/content/docs/<team>/` with a `title` in YAML
+build. Write MDX in `src/content/docs/<team>/` with a `title` in YAML
 frontmatter. Sidebars use directory names as group labels, so name nested folders
-for display (for example, `Hardware Provisioning` or `Quickstart`). Use explicit
-`slug` values to keep URLs stable and `index.md` for a group's overview page.
+for display (for example, `Hardware Provisioning` or `Quickstart`). Use
+`index.mdx` for a group's overview page.
 Sidebars are generated from those directories; use `sidebar.order`
 in frontmatter to control ordering. The team dropdown is configured in
-`astro.config.mjs`, and the homepage is `src/content/docs/index.md`.
+`astro.config.mjs`, and the homepage is `src/content/docs/index.mdx`.
 
 Pages CMS is configured in `.pages.yml`. It exposes the homepage and the
 Software, Mechanical, and Electrical content directories to the hosted Pages
