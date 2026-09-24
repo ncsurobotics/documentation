@@ -124,6 +124,10 @@ content:
     path: src/content/docs/index.mdx
     format: yaml-frontmatter
     fields:
+      # Preserve the homepage layout when Pages CMS saves its frontmatter.
+      - name: template
+        type: string
+        hidden: true
       - &title-field
         name: title
         label: Title
