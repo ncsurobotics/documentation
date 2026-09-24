@@ -225,6 +225,7 @@ content:
     label: Software
     type: collection
     path: src/content/docs/software
+    filename: "{primary}.mdx"
     format: yaml-frontmatter
     subfolders: true
     fields: *page-fields
@@ -239,6 +240,7 @@ content:
     label: Mechanical
     type: collection
     path: src/content/docs/mechanical
+    filename: "{primary}.mdx"
     format: yaml-frontmatter
     subfolders: true
     fields: *page-fields
@@ -253,6 +255,7 @@ content:
     label: Electrical
     type: collection
     path: src/content/docs/electrical
+    filename: "{primary}.mdx"
     format: yaml-frontmatter
     subfolders: true
     fields: *page-fields
