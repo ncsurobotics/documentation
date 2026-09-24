@@ -140,41 +140,6 @@ content:
         label: Slug
         type: string
         description: Optional custom URL slug for this page.
-      - &edit-url-field
-        name: editUrl
-        label: Edit URL
-        type: string
-        description: Override the edit-page link with a custom URL.
-      - &head-field
-        name: head
-        label: Head tags
-        type: object
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{fields.tag}"
-        description: Additional HTML tags to add to the page head.
-        fields:
-          - name: tag
-            label: Tag
-            type: string
-            required: true
-            description: HTML tag name to add to the page head.
-          - name: content
-            label: Content
-            type: text
-            description: Text content for the head tag.
-          - name: attrs
-            label: Attributes
-            type: object
-            description: Attributes for the generated head tag.
-            fields:
-              - { name: charset, label: Charset, type: string }
-              - { name: name, label: Name, type: string }
-              - { name: content, label: Content, type: string }
-              - { name: property, label: Property, type: string }
-              - { name: rel, label: Relationship, type: string }
-              - { name: href, label: Href, type: string }
       - name: hero
         component: hero
       - &banner-field
@@ -211,8 +176,6 @@ content:
       - *title-field
       - *description-field
       - *slug-field
-      - *edit-url-field
-      - *head-field
       - *banner-field
       - *pagefind-field
       - *draft-field
