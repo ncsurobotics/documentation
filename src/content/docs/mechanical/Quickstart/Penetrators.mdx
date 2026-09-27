@@ -1,0 +1,55 @@
+---
+title: Penetrators
+sidebar:
+  order: 15
+---
+
+*Written by Noah Svirsky and other contributors*
+
+**Ok y'all I couldn't think of a joke for this one. There's gotta be one somewhere, right?**
+
+## What is a penetrator?
+
+In the creation of an underwater autonomous vehicle, a penetrator is used to allow an electrical cable to pass into a hull while maintaining a water-tight seal.
+
+There are two primary penetrator options for applications within SeaWolf & SeaPup when considering desired price, depth rating, and life-cycle:
+
+## Potted Cable Penetrator
+
+A potted penetrator is a bulkhead with a threaded shank and a hole allowing a cable to pass inside. The hole has a greater diameter at the bulkhead than the shank (fig. 1). The bulkhead and an O-ring placed between the bulkhead and hull are tightened until compressed enough to form a water-tight seal, and fastened with a nut and washer from the inside of the hull.[^8]
+
+![Cross section of a potted cable penetrator with dimension labels A and F](/mechanical/quickstart/potted-penetrator.jpg)
+
+*Figure 1. Diagram of a potted cable penetrator*
+
+In order to make the seal completely water-tight, a marine-grade epoxy (e.g. [Loctite Epoxy Marine](https://www.loctiteproducts.com/products/central-pdp.html/loctite-epoxy-marine/SAP_0201OIL029V5.html)) is poured into the gap between the cable and interior walls of the penetrator. If applied correctly, the epoxy will complete the seal once cured.[^9]
+
+[A guide for potting a cable penetrator can be found here](https://bluerobotics.com/learn/potting-a-cable-penetrator/). Please note this is an example, and the manufacturer recommended procedure should be followed if provided.
+
+When choosing a potted penetrator, the inner bore diameter (labeled “F” on fig. 1) must be greater than the diameter of the desired cable jacket and the inner seal size (“A”, fig. 1) must be greater than the diameter of the cable’s inner core.[^10]
+
+For standard cable jacket diameters (3mm to 8mm), [BlueRobotics offers inexpensive and reliable options](https://bluerobotics.com/store/cables-connectors/penetrators/penetrator-vp/) for M6 and M10 specifications.
+
+For larger cable diameters, [Blu-Sub Mechatronics offers potted penetrators](https://blu-sub.com/collections/cable-penetrators/products/subsea-cable-penetrator?variant=45386407936158) with inner bore diameters ranging from 9mm to 23mm.
+
+## Compression gland cable penetrator (BlueRobotics “WetLink” penetrator)
+
+![WetLink compression gland penetrator diagram and exploded view](/mechanical/quickstart/wetlink-penetrator.png)
+
+*Figures 2 & 3. Diagram & exploded view of WetLink*
+
+Compression gland cable penetrators, a.k.a BlueRobotics “Wetlink” penetrators, are in many ways simpler than potted penetrators. The WetLink penetrators have a similar form-factor to potted penetrators, with the major difference being the cable is run through a rubber seal which is compressed until a water-tight seal is formed, no potting required.[^11]
+
+[BlueRobotics offers WetLink Penetrators](https://bluerobotics.com/store/cables-connectors/penetrators/wlp-vp/) in M6, M10, and M14 specifications, supporting cable jacket diameters between 3.7mm and 9.8mm. There are six seal sizes to choose from, each having two options for plug compression: Low Compression (LC) - for cable diameters within ±0.3mm of the base seal size, and High Compression (HC) - which shifts the compatible diameter range for each seal down by 0.5mm.[^12]
+
+[The WetLink technical specifications sheet can be found here](https://bluerobotics.com/wp-content/uploads/2025/11/WLP-DATASHEET-v1.4-AUG2025.pdf). This includes a recommended lifetime of 3 years or 500 cycles at depth, whichever comes first, as well as a list of pre-tested compatible cables for various seal sizes.
+
+Blue Robotics also offers an [assembly and installation guide](https://bluerobotics.com/learn/wetlink-penetrator-installation-guide/) for their WetLink penetrators. Additionally, they have a guide for [choosing the correct penetrator](https://bluerobotics.com/learn/how-to-choose-a-wetlink-penetrator/), [stripping cable jackets](https://bluerobotics.com/learn/cable-stripping/), and [performing a vacuum test](https://bluerobotics.com/learn/using-the-vacuum-test-plug/) to check a finished seal. AquaPack generally prefers to use WetLink penetrators when possible.
+
+## References
+
+[^8]: Blu-Guide (2025), [Waterproofing Procedure for Penetrator Devices](https://blu-sub.com/blogs/blu-guide/waterproofing-procedure-for-penetrator-devices), Blu-Sub Mechatronics.
+[^9]: Blue Robotics (2025), [WetLink Penetrator](https://bluerobotics.com/store/cables-connectors/penetrators/wlp-vp/).
+[^10]: Blu-Sub Mechatronics, [Subsea Cable Penetrator](https://blu-sub.com/collections/cable-penetrators/products/subsea-cable-penetrator?variant=45386407936158).
+[^11]: Rustom Jehangir (2022), [Why You Should Add Penetrators to Your Subsea Design Library](https://bluerobotics.com/penetrators-vs-connectors/), *Sea Technology* 63, no. 7 (July): 13–16.
+[^12]: Blue Robotics (2025), [How to Choose a WetLink Penetrator](https://bluerobotics.com/learn/how-to-choose-a-wetlink-penetrator/).

@@ -1,0 +1,73 @@
+---
+title: The Engineering Design Process
+sidebar:
+  order: 5
+---
+*Written by Alexandria Epley*
+
+**I KNOW you’re sick of hearing about it, BUT…**
+
+If you’re anything like me, the engineering design process is something you got tired of hearing about after the 5th or 6th time it got brought up in E101, E102, and probably every other intro class you took. “I get it” you said, “just let me design stuff already.” And then, if you’re anything like me, you’ll skip a few steps in the process. You’ll go from **Define The Problem** directly to **Brainstorming** and **Developing**, skipping over some steps along the way. And your solution will probably work. Well, kinda work. With a few tweaks. And then maybe a few more tweaks. And then actually maybe a rework of a few parts. And then a few pieces of duct tape and half a dozen zip ties. And before you know it, you’ll have spent more time reworking than you’d have spent if you just followed the process properly the first time. You’ve probably heard the phrase “measure twice, cut once.” The engineering design process is to some extent just that phrase taken to its logical conclusion.
+
+So, let's look at an example of how the Engineering design process has been applied to this club by going through the development of SeaWolf IX’s camera hull. Or, for a more general overview (or if you hate my writing style) check out [this link](https://www.sciencebuddies.org/science-fair-projects/engineering-design-process/engineering-design-process-steps).
+
+![Engineering design process flowchart from defining the problem through testing and redesign](/mechanical/quickstart/engineering-design-process.png)
+
+*Fig. 1 The Engineering Design Process Flow Chart*
+
+## Define the Problem
+
+The first step of the engineering design process is simple. Define your problem. Not “define your idea.” Define your problem. Start by identifying a problem that needs to be fixed. Starting from a cool idea and looking for a problem after the fact rarely works (at least from a profit perspective). In this case, our problem is simple:
+
+AquaPack Robotic’s Software team has a new Camera— a ZEDxMini, that they need to be able to use underwater. They need to get clear video from the camera, and need to be able to run a data cable away from the camera to the computer at the heart of SWIX.
+
+Notice that this problem statement is very open ended. It doesn’t propose a solution (i.e. “AquaPack needs a camera hull”) but instead explains the general problem that needs to be solved.
+
+## Do Background Research
+
+Background research for this problem includes looking into prior solutions. This is essentially the step where you are encouraged to cheat on your homework. Someone else has probably already done your job for you, and there is no need to reinvent the wheel. In this case, research entails “how can I make a camera waterproof.” 
+
+A number of solutions exist, including some off the shelf components. But in this case the main options seem to be epoxy or a waterproof enclosure. These options can be set aside for now, but will be recalled in the brainstorming stage.
+
+## Specify Requirements
+
+Ok, so you’ve defined your problem and done your research. Now it’s time to specify requirements. What EXACTLY does your solution need to accomplish? How deep underwater does it need to go? Does it need to be resealable? Is there a budget constraint? And so on. A list of example requirements for the ZEDxMini problem might include…
+
+- Waterproof for 8+ hours per cycle at a depth of 30 ft
+- Cycle life of 500+ (so 500+ submersion and surfacing cycles)
+- Corrosion resistant to Saltwater and Chlorine Water
+- Total Cost (not including camera) less than $300
+- Camera must be accessible in under 30 minutes
+- Camera must be resealable by AquaPack members
+
+## Brainstorming, Evaluate, and Select Solution
+
+Only now, several steps in, do we get to brainstorming. Defining requirements PRIOR to brainstorming helps designers to evaluate their brainstormed options prior to a full engineering design being created. In this case, several options exist, falling into two main categories. Enclosure based solutions (consisting of a waterproof enclosure in which the camera sits), and Potted solutions, where a camera's electronics are encased in epoxy.
+
+![Comparison of a camera enclosure and a camera encased in epoxy](/mechanical/quickstart/camera-waterproofing-options.png)
+
+*Fig. 2 (Left) Camera in enclosure; (Right) Camera encased in epoxy*
+
+Both solutions can technically meet all of our requirements, but the enclosure solution makes swapping the camera out and resealing it much easier, which is a plus in this instance. Additionally, an enclosure based solution is more upgradeable, and easier to calculate cycle life for, then a potted solution.
+
+As such, AquaPack chose to use an Enclosure based solution. But this opens more possibilities… Enclosures can be waterproofed in a number of ways (see [Gaskets & O-Rings](/mechanical/quickstart/gaskets--o-rings/) for more info). Ultimately, we chose to use an O-ring in a racetrack groove, as that was a cheap, off the shelf solution that stayed reliable and made changing out the enclosure very easy.
+
+## Develop & Prototype Solution
+
+Having decided on a solution, the next step was to actually develop our camera hull. This was done mostly in CAD, and details on the design process can be found in the Documentation folder of the AquaPack google drive. The general process included determining what material to use (see [Materials](/mechanical/quickstart/materials/) for material selection criteria), figuring out where we would machine our hull, and of course actually designing the thing. Our CAD model was done parametrically, to make it easy to change if we ran into trouble. 
+
+For this project, I contacted Tim Coleman, the machine shop director for the ISE side of NCSU CAMAL. He was kind enough to let me use his HASS VF2 3 Axis CNC to manufacture our camera hull. 
+
+![Exploded CAD view of the camera, waterproof hull, and mount](/mechanical/quickstart/camera-hull-exploded.jpg)
+
+*Fig. 3 Exploded view of camera, hull, and mount*
+
+After manufacturing and assembling the Camera hull, it was time to test it to see if it worked!
+
+## Test Solution
+
+We plugged it up and tossed it in a pool for a few hours. I’m dead serious. We tossed it to the bottom of the Carmichael pool at NCSU, filled with tissue paper, and left it there to see if it was waterproof. Fortunately, in this case it was! Due to our careful consideration of design requirements during earlier steps of the process, we were able to avoid any major reworks. But had there been an issue, we would have returned to the brainstorming step to figure out how to overcome them!
+
+## Conclusion
+
+There is a reason all the old curmudgeons won’t shut up about the engineering design process. It works. Really freaking well. And while the exact steps taken here won’t apply perfectly to every project, the overall process maps to the vast majority of engineering projects. I would highly recommend following it, it will save you so many headaches, I promise!

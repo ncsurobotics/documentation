@@ -1,0 +1,41 @@
+---
+title: Materials
+sidebar:
+  order: 14
+---
+
+*Written by Aiden Fodi, Alexandria Epley, and Alexis Mead*
+
+**STAINLESS STEEL IS A LIE (and dria is mad about it)**
+
+## Why is Material Selection important?
+
+Underwater environments involve high pressures, corrosion, and other harsh conditions. Designing for these environments requires the use of specialized materials that can handle the strain of prolonged submersion. In particular, our AUV must withstand testing in a chlorinated pool at a depth of 12 ft, and salt water testing at a depth of 30 ft. This means that the components that we design have to be able to stand up to not just the pressure of the water but also any stresses and degradation caused by saltwater or chlorine respectively. Unfortunately, this locks us out of many common engineering materials, including most steels and many rubbers. We also have to be able to machine and afford the materials we select!
+
+## So What Materials Can We Use?
+
+To be blunt, the list is fairly short. Most plastics are fine, though some rubbers can be sketchy. FDM printed PETG is our primary structural plastic, and EPDM is our preferred choice for O-rings. Other options can be used, but must be carefully evaluated to ensure they hold up to our harsh environmental conditions.
+
+As far as metals go, we primarily use 6061 aluminum for our structural parts, and 316 stainless steel for our hardware. 6061 is highly corrosion resistant and reasonably strong. It is also machinable and inexpensive, which are vital to a student org of our size. If you need a metal part, it should probably be 6061, unless you have a good reason to use something else. 316 stainless steel is strong, super corrosion resistant, and a pain in the butt to machine into custom components. We use it for off the shelf hardware.
+
+## What to beware of…
+
+304 stainless steel is lying to you. So is 440, 18-8, and a plethora of other types of steel. They handle fresh water, but when you throw salt and chlorine at them they rust. Rust is bad. Rust makes your robot fall apart. Don’t use 304! Also, if a part lists “stainless steel” but doesn’t specify the type of stainless steel, it’s probably 304. Don’t use it, and buy from a vendor who tells you the specific alloy you are getting.
+
+## Galvanic Corrosion
+
+When dissimilar metals are placed next to one another in an environment with an electrolyte solution, there is a risk that they essentially form a battery. Different elements want electrons in different amounts, and this electronegativity difference can lead to a voltage difference, and can corrode metal that, were they used alone, would be fine in an underwater environment.
+
+Unfortunately, our entire environment is FILLED with an electrolyte solution— in fact, salt water is often the stereotypical example of an electrolyte solution given in chemistry classes.
+
+![Galvanic corrosion between dissimilar metals in an electrolyte](/mechanical/quickstart/galvanic-corrosion.jpg)
+
+To determine if your parts will galvanically corrode, you can reference the compatibility chart listed below. For most parts designed for AquaPack, service life is low enough that galvanic corrosion is not a real issue— but it’s important to be aware of, particularly if you plan to pursue underwater design later in life.
+
+![Chart comparing galvanic compatibility of different metals](/mechanical/quickstart/galvanic-compatibility-chart.png)
+
+## Powder Coating & Anodizing
+
+Powder coating and anodization both involve coating a part in a corrosion resistant layer, preventing galvanic corrosion and adding color to components. Anodization involves the intentional deposition of a passivating oxide layer onto a component (in other words, you make a layer of corrosion resistant “rust” on the surface of a part, preventing anything underneath from corroding). Powder coating involves spraying on a coat of powder that kinda functions like spray paint.
+
+In general, powder coating is more durable than anodization, but has more impact on dimensional accuracy. The protective layer from powder coating is thicker than the layer from anodization and must be accounted for when designing parts to fit around the powder coated part. Additionally, since powder coating is like spray paint, it cannot reach interior surfaces, like the inside of a 1x1 aluminum tube (just a totally random example). Anodization is done in an acid electrolyte bath and can thus reach all the surfaces on our random tube. There are different types of anodization with different advantages and disadvantages, but I won’t get into them now. SWIX is anodized because we used aluminum tubes as our frame and we needed to coat the entire tube so that the frame would wear at the same rate.

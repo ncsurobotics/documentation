@@ -1,0 +1,45 @@
+---
+title: Connectors
+sidebar:
+  order: 16
+---
+
+*Written by Alexandria Epley*
+
+**Connection: The underlying source of the POWER OF FRIENDSHIP™**
+
+## What is a connector?
+
+A connector is, very simply, any electrical connection that can be unplugged. There is a USB connector on your phone, an ethernet connector on your internet router, and ribbon connectors on your motherboard. In underwater robotics, specialized connectors are used to enable the quick removal of cameras, batteries, and the ethernet tether we use to communicate with the robot. All connectors used on the outside of a pressure vessel must be waterproof. For Underwater Robotics, there are two major types of connectors: drymates and wet mates.
+
+## Drymates
+
+Drymate connectors are waterproof when plugged in, and may be plugged and unplugged above water. They tend to be less expensive than wet mates, and include things like Fischer Connectors. SWVIII utilized drymate connectors extensively, and they work perfectly well for any components that do not need to be unplugged underwater. Dry mates are easier to find than wet mates, and the mechanical team has historically considered designing custom dry mate connectors.
+
+![Fischer drymate connectors used on SeaWolf VIII](/mechanical/quickstart/fischer-drymate-connectors.png)
+
+*Fig 1. Fisher drymate connectors were used extensively on SWVIII*
+
+In general, drymate connectors work by enclosing electrical contacts in a small pressure vessel that is sealed with O-rings. The O-rings form a face seal with the enclosure the connector runs into, and a radial seal between the male and female ends of the connector. This keeps the connector pins from getting wet when underwater, but does not allow the connector to be unplugged, as that would break the seal and flood the pins. In many ways, drymate connectors work like tiny hulls with a penetrated cable running out of them.
+
+![Fischer connector cross section with radial seal at a and face seal at b](/mechanical/quickstart/fischer-connector-seals.jpg)
+
+*Fig 2. Diagram of a Fisher Connector. Notice the radial seal at a and the face seal at b.*
+
+## Wet Mates
+
+Wet mate connectors are a little bit magical, in that they can be plugged in and unplugged underwater. Yes, I said underwater. Like in the pool. 10 feet deep. Without drying anything off first (can you tell I like these things???). Wet mate connectors are incredibly useful on any component that might be unplugged while the robot is in the pool. Primarily, that includes any data transfer cables that need to be unplugged before an autonomous run (such as our tether cable). One example of a wet mate connector, and the one used on SWIX, is the McCartney SubConn series. Note that wet mate connectors often have robust maintenance routines, including regular greasing, and a fairly limited cycle life.
+
+![SubConn wet-mate connector and SeaWolf IX attached to its tether](/mechanical/quickstart/subconn-wetmate.png)
+
+*Fig 3. McCartney SubConn wet mate image, and SWIX tethered via a wet mate connector*
+
+Wet mate connectors generally work by somehow forcing water out of the pin housing as pins are being plugged in. Different brands do this in different ways. Some use oil, some use highly corrosion resistant pins. McCartney SubConn connectors mechanically force water out of the pin slot, and should be filled with grease before every mate and un-mate cycle.
+
+## Connectors Vs. Penetrators
+
+Connectors are better than penetrators in basically every area except for cost (and, depending on the connector, ease of installation). Connectors can be plugged and unplugged, enabling connected parts to be removed from a robot. Connectors enable parts to be easily swapped and replaced. But cost is a very significant area, and connectors can be 10-20 times more expensive than penetrators. As a general rule of thumb, the more likely a component is to be removed from the robot, the more important it is to connect that component.
+
+For example, thrusters are almost never removed from the robot. They can be penetrated with no real important losses. On the other hand, the ethernet tether must be removable from the robot to enable a wireless run. As such, it MUST be connected. Other components fall in between these two extremes. Cameras are nice to have connected. Torpedo launchers probably should be connected. And so on and so forth.
+
+With infinite money, everything could be connected. But of course, we do not have infinite money. Ultimately, choosing between connectors and penetrators is an interdisciplinary effort between the mechanical, electrical, and admin teams, and is an important aspect of AUV design.

@@ -1,0 +1,77 @@
+---
+title: 3D Printing
+sidebar:
+  order: 8
+---
+*Written by Alexis Mead, Alexandria Epley, and Denver Huffman*
+
+**I HAVE UNLIMITED POWE– denver, did you slice this for PLA?**[^denver]
+## Overview
+Many of you are likely already familiar with the idea of 3D printing. Some of you have probably already printed something, or maybe you’ve been using a 3D printer for years. There is a decent chance you will end up 3D printing during your stint as an AquaPack member, so some (or all) of this information will be useful. We use a Bambu Labs A1 as our primary printer. We primarily use PETG because it does well underwater and is stronger than PLA. Sometimes we use TPU, which is more flexible than PETG or PLA.
+
+## How it Do?
+
+![Labeled 3D printer and fused deposition modeling process](/mechanical/quickstart/fdm-printing.png)
+
+*Fig 1. Printer diagram and diagram of the FDM printing process*
+
+## Designing for 3D Printing
+To 3D print something, you must first have a 3D model. But not all models are 3D printer friendly. Due to the mechanism by which FDM printers function, some parts are easier to print than others. First off, the part must fit within the size constraints of the printer. The bed (a detachable plate that the printer prints onto) is a certain size (256 mm x 256 mm for our A1), and the printer can only raise the nozzle so high (256 mm for our A1). Sometimes you can get away with a part with a linear dimension greater than 256 mm by rotating the model prior to preparing it for printing (yay hypotenuse). 
+
+When designing a model for 3D printing you should also take into account how the part will be printed. Since the printer cannot spit out hot filament into the air and have it hold its shape, you must either design the part to have a maximum overhang angle of 45° or add supports. Choosing to make a 45° angle allows the printer to continue to build upon the already printed areas, since a 3D printer prints in layers from the bottom all the way up. Alternatively, you can use supports, which is an option chosen in slicer software (the software used to provide the 3D printer the information that it uses to actually print the part in the desired fashion). Supports are used for anything that exceeds a 45° angle, such as the ceiling of a box. They are essentially little trees that get printed along with the part to help, as the name suggests, support the 3D print until the plastic cools enough to maintain its shape. Once the print is done, the part is removed from the bed and the supports can be snapped off without harming the main print (sometimes with some forceful wiggling with pliers). One way to avoid using a lot of supports, (which is recommended since it uses filament and takes time to take off) is to orient the part such that the bottom is as flat as possible and extrusions extend as upwards as possible. This can be done by designing with this constraint in mind or by rotating the part on the bed so that it uses as few supports as possible.
+
+![Sliced part showing supports beneath overhangs](/mechanical/quickstart/sliced-part-supports.jpg)
+
+*Fig 2. Random part from the internet sliced with supports*
+
+When designing for 3D printing, you must take into account that the filament shrinks and expands a little bit while printing due to the temperature variances. Generally, the print will be slightly (very slightly) bigger than expected. This means that if you design a part to have holes, those holes will shrink a little bit. This shrinkage can be enough to prevent a bolt from going through entirely. Alternatively, if you are designing a part that goes into something else, it can expand enough to prevent the part from fitting correctly. The way to account for these changes is by using proper clearances (sometimes called tolerances). To clearance something, add/subtract a smidge of material from the model before printing. Each filament and printer has a different tolerance, and they can often be found through a quick Google search. Double check [Clearance & Tolerances](/mechanical/quickstart/clearance--tolerances/) for a more expansive explanation.
+
+Depending on the part, you may want to clearance it differently. If the part must have a tight fit, you use smaller clearances (never no tolerance). If you just need it to fit, you usually can hit the middle of the recommended range and be fine. One common example of a less picky clearance is when you design something to fit around SWIX’s frame. All the tubes are 1x1 inches, so the dimensioning is easy. However, to fit something around the frame to attach it (like the switches or LED bar), you must add a bit of space so that it is slightly more than 1 inch so that the piece will actually fit on the frame.
+
+## Slicing a File
+Once the part has been designed, the computer needs a way to send the printing information to the printer. This is done through a slicing software, with the one our club uses being called [Bambu Slicer](https://bambulab.com/en/download/studio). This software provides you the methods to add supports into the design, change how much filament is used to fill internal cavities, and see how the printer will create your part layer by layer. 
+
+The first step once you have the program downloaded is 
+ 
+**CHANGE YOUR DEFAULT MATERIAL TO PETG!!** 
+
+This will prevent you from accidentally slicing your material for the wrong filament type, which due to the higher melting point of PETG makes your print an almost (99.999999%) guaranteed failure. Our club uses almost exclusively PETG for our prints, so unless you have your own personal 3D printer you will likely never need to switch off of this type.
+
+![Bambu Studio filament dropdown for selecting PETG](/mechanical/quickstart/bambu-filament-selection.png)
+
+*Fig 3. Dropdown menu to locate how to change filament type*
+
+The next step is to alter the strength of the print, through both infill and supports. Under the strength tab in the process section, the third part is the sparse infill section.
+ 
+![Sparse infill density settings in Bambu Studio](/mechanical/quickstart/bambu-infill.png)
+
+*Fig 4. Location to change infill*
+By changing the density, you are able to change the amount of space inside the solid bodies of the print. As the number reaches closer to 100%, it makes the part become more of a solid brick of plastic. This makes the parts incredibly strong, but most parts do not need to be that dense and makes it just a waste of plastic. The default the club uses is 20%, with only structurally important parts such as the handles being printed at 100%.
+
+Supports have their own section in the settings, as almost every print that is not just a flat plate uses them. Supports are turned off by default, so you will need to enable these. Once on, modern slicing software commonly uses tree supports, as they use less plastic than traditional rectangular supports. Most of your prints will be able to print fine with these, but more technically specific or areas with large hanging spaces might need something else. If you are printing an internal cavity with an importance on clearance, rectangular supports are very useful because they leave less residue behind when removed, and are less prone to failing. Areas with very large spaces needed to be held up by supports may also be problematic, as sometimes the trees on standard supports can fall over midway through a print. If there is an area that requires precise support, you may want to consider a support type with a wider footprint and less small joints that can fail.
+
+![Part sliced with branching tree supports](/mechanical/quickstart/tree-supports.jpg)
+
+*Fig 5. Tree supports*
+
+![Part sliced with rectangular supports](/mechanical/quickstart/rectangular-supports.jpg)
+
+*Fig 6. Rectangular supports*
+
+An optional (but advised) thing you can do is add a brim to your print. This adds a couple of rings of material on the first layer of a print to assist in bed adhesion, as a wider footprint prevents the part from sliding off of the bed while printing. In the Others tab Bed Adhesion section, turn brim type to Outer Brim on, with around 5 mm brim width.
+
+![Outer brim around a print to improve bed adhesion](/mechanical/quickstart/print-brim.jpg)
+
+*Fig 7. Brim*
+
+Finally, in the top right corner select Slice Plate, which gives you a layer by layer breakdown of how the part will print. You can use the right slider bar to locate a specific layer, as well as the time it will take to get to that layer. This allows you to make sure internal cavities look the way you want them too, and make any changes in the main CAD before the actual print. Additionally, either timing when you want to manually pause or using the add pause setting found by right clicking the slider bar, you can pause before the printer closes off an internal cavity that you can put something in, and by resuming the print you can embed a magnet or other small object without using adhesives or screws. After you are done slicing the part, select export sliced plate file, and use the SD card that is a part of the printer located on the front right corner to upload the design to the printer. If your computer does not have an SD card reader, the club has a small white USB to SD card reader that you can plug in. 
+
+![Sliced plate preview showing layer slider, print time, and export controls](/mechanical/quickstart/bambu-sliced-preview.jpg)
+
+*Fig 9. Important post-slicing information*
+
+WARNING: DO NOT REMOVE THE SD CARD FROM THE PRINTER WHILE PRINTING. IT WILL CAUSE THE CURRENT PRINT TO FAIL.
+
+For a comprehensive overview of how to use Bambu Slicer, check out the Bambu Labs quickstart guide-- https://wiki.bambulab.com/en/software/bambu-studio/studio-quick-start. Note that AquaPacks printers are not network connected, and should be sliced for an SD card.
+
+[^denver]: Denver Huffman, Mechanical Member 2023–2027. Occasionally sliced parts for the wrong material. Also the creator of SWIX’s robust buoyancy system!

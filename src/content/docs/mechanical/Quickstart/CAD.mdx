@@ -1,0 +1,134 @@
+---
+title: CAD
+sidebar:
+  order: 6
+---
+*Written by Alexandria Epley*
+
+**If McMaster is your Bible, SolidWorks is your prophet…**
+
+CAD, or Computer Aided Design, is one of the most important skills for a design engineer. Technically, any program on a computer that assists with or aids design is a CAD program, but in engineering, CAD typically refers to parametric 3D modeling programs such as SolidWorks, Fusion 360, and Onshape. These programs dramatically speed up the process of designing complex parts when compared to designing by hand. The general CAD process consists of first making 2D sketches that are then revolved or extruded into 3-space.
+
+![Sketch, extrude, and revolve examples arranged from left to right](/mechanical/quickstart/cad-sketch-extrude-revolve.png)
+
+*Fig 1. From left to right, a sketch, extrude, and revolve*
+
+At NC State, your first real class on CAD will likely be GC 120, which goes over the basics of SolidWorks. CAD can get VERY complex, but this document should serve as a good introduction to some of the fundamental do’s and don'ts of CAD. It will center around SolidWorks, as that is what I am most familiar with, but the techniques described here should be applicable to most CAD platforms. This document is NOT a replacement for a full CAD class (or googling) but should help to fill in some of the design process elements that CAD classes often miss.
+
+## Basic Terminology
+
+| Term | Definition |
+| --- | --- |
+| Variable | A user controlled number than impacts how one or more sketch or feature is generated|
+| Sketch | A 2D drawing that can be pulled into 3D by using extrudes, revolves, and other tools|
+| Body | a 3D object|
+| Feature | Basically any action conducted on a model, and usually what result from that action|
+| Part | A single file containing usually only one body. Parts are generally ridgid|
+| Assembly | A file combining multiple Parts using mates or other constraints |
+| Normal | at a 90 degree angle to|
+
+## The Power of Parameters
+
+Parametric CAD is, first and foremost, parametric. What that means for you is simple— you can define variables, or “parameters” that can be changed later on in the design process. Imagine you are designing an underwater robot (I know, WILD to consider). You know your robot will have four legs, but aren’t 100% sure how long they need to be. Using CAD, you can define a variable “LegLength” that controls the height of your legs. That way, when you eventually figure out your leg length, all you have to do is update one number, and BAM— the legs adjust to the length you have specified! 
+
+![TallWolf and SeaWolf IX showing how a leg-length parameter changes the assembly](/mechanical/quickstart/cad-parameters.png)
+
+*Fig. 2. Parameterization demo with TallWolf and SWIX*
+
+In SolidWorks, the easiest way to make parameters is using Variables (Google “how do I variables in SolidWorks” for a full explanation). Not everything needs to be driven by a variable, but if you think you might need to change it in the future, it can be very nice to have.
+
+## The Feature Tree
+
+In tandem with parameterization, the Feature Tree forms the backbone of modern CAD programs. Using the feature tree, you can edit features that were designed a week ago. This allows you to make design changes without stacking feature on top of feature on top of feature. The ability to edit past features instead of simply modeling over top of them is what makes CAD programs better for engineering than programs like Blender. 
+
+![SolidWorks feature tree with the features used to build a part](/mechanical/quickstart/cad-feature-tree.png)
+
+*Fig. 3. Feature tree example*
+
+While modeling, you should be thinking about how you will edit your model if you need to change it in the future— If you make it wider, will it mess up your hole spacing? If you make your holes bigger, will their center distance stay where you need it to? Considering these while designing will make future changes to the model much much easier, and is essential to becoming a good CAD designer.
+
+## Controlling the Camera
+
+Every CAD program has slightly different camera controls, but the fundamentals are the same. In every program, it will be possible to Zoom, Pan, and Rotate your view of a model. Most programs also have a view cube in the top right corner that can be used to spin your model around.
+
+Solidworks has two additional Camera Control features. If you hit the spacebar while modeling, it will open a large version of the view cube— if you click on a face or corner of the cube, your view will be changed such that you are looking directly at that face or corner.
+
+## Sketches
+
+Ok! Now we get to the fun part! Sketches are the backbone of every CAD design. They are what they sound like— 2D sketches that will eventually become a part of your 3D design.
+
+Sketches are drawn on a plane or face in a part. They are made up of lines that form open and closed regions. These (usually closed) regions are then Extruded, Revolved, or Swept into 3D. There are two types of sketch lines, normal lines, and construction lines. Construction lines do not bound contours and are dashed, while normal lines do bound contours and are solid. The lines can be toggled between by right clicking on a line and clicking the “construction geometry” button. 
+
+Every sketch has an origin— most of the time, sketches should be drawn around the origin or with the origin as a corner of the part. This lets you fix the sketch in space, so that it doesn’t get moved around a bunch if you accidently click and drag it. To start a sketch, click on the “Sketch” box. This is in the top left corner of most CAD programs.
+ 
+![SolidWorks sketch toolbar with New Sketch and Smart Dimension tools](/mechanical/quickstart/cad-sketch-tools.png)
+
+*Fig 4. The top ribbon of solidworks, showing the new sketch and smart dimension tools*
+
+The most commonly used sketch tools are rectangles, lines and circles. The size of these sketch features can be determined after they have been drawn by dimensioning them. Dimensioning is a different keybind in every program. In SolidWorks, the dimension button can be found in the sketch panel in the top left corner. I highly recommend adding a hotkey for the smart dimension feature. Mine is set to Shift+D. 
+
+![The same sketch before and after adding dimensions](/mechanical/quickstart/cad-sketch-dimensions.png)
+
+*Fig 5. Basic sketch without dimensions (left) and with dimensions (right)*
+
+In a good sketch, every feature is fully defined. That is to say, there is a dimension or constraint determining every detail of the sketch. Nothing moves when you drag it, and, in SolidWorks, all the lines are black. Fully defined sketches allow your design to be more easily communicated to others! If someone asks how big your part is, you need to be able to say “4 inches on side A, 2 on side B, and 6 on side C.” Dimensioning your sketches makes this possible! 
+
+## Extrudes, Revolves, Sweeps and Lofts
+After you’ve completed your sketch, the next step is to bring it into 3D! There are a number of tools to do this, but the most common are Extrudes, Revolves, Sweeps, and Lofts.
+Extrudes are the most straightforward feature. They essentially pull a 2D sketch out of a plane. So a sketch of a square becomes a rectangular prism, a sketch of a triangle a triangular prism, and a sketch of a circle becomes a cylinder. Extrudes are great for getting the bulk of a part made. They are very versatile, since they can be shaped to the general design of your part.
+
+![Two extruded parts followed by two revolved parts](/mechanical/quickstart/cad-extrudes-revolves.png)
+
+*Fig 6. Example parts. From left to right, extruded, extruded, revolved, revolved*
+
+Revolves are slightly more complex than extrudes. They consist of “spinning” a part out into 3D space. They are excellent for making circular parts! They are not quite as versatile as extrudes, but will save you a lot of time on circular features!
+
+Sweeps are the first feature to require more than one sketch. At their most basic, a sweep requires a profile sketch and a path sketch. The profile sketch (a circle, or star, or drawing of Aristotle’s face) is swept along the path sketch, which traces the path that the swept feature will follow. Imagine one of those silly straws with the loops in them. The profile sketch is just two concentric circles. The path sketch is a line with a bunch of spirals (3D sketches are possible, and in this case would be advised). The straw can be modeled by sweeping the profile sketch along the path sketch. 
+
+![Circular profile and curved path sketches used to create a sweep](/mechanical/quickstart/cad-sweep.png)
+
+*Fig 7. Example of sweep feature. Profile sketch is small circle, path sketch is a curvy line*
+ 
+Lofts also require two sketches. You can image lofts as if you’re stretching a film between two contours— The film will conform to each contour, but the area between the contours will be a gradual transition between the shape of the first contour and the shape of the second. Lofts are often used when trying to model complex or organic geometries. They don’t tend to be super common in AquaPack, but are nevertheless good to familiarize oneself with.
+
+![A loft joining a hexagonal sketch to a circular sketch on another plane](/mechanical/quickstart/cad-loft.png)
+
+*Fig 8. Example of loft between a hexagon and a circle*
+
+## Cuts
+Extrudes, Revolves, Sweeps, Lofts, and most other features have parallel cutting features. Just as a normal extrude lets you pull a cylinder from a 3D plane, a cut extrude lets you cut a shape out of a 3D part. Cut features are essentially identical to the features discussed above, with the only real difference being that they remove material rather than adding it.
+
+![A part before and after a cut feature removes material](/mechanical/quickstart/cad-cut.png)
+
+*Fig 9. Cut feature example*
+
+## Reference Geometry
+You may have noticed that, in the loft section, the two sketches are located on different planes. One is the top plane that is standard in all CAD programs, but the other is a user created plane, known as a reference	plane. Reference planes (and other types of reference geometry) can be created to enable modeling a feature in an odd location, at a specific angle, or any number of other things. They can be defined by any number of things, and I will not go into detail on them here, but they are worth familiarizing oneself with. 
+
+## Chamfers and Fillets
+The edges of your parts are sharp. Add chamfers and fillets to make them not sharp :)
+
+More seriously, chamfers should be put on the outside edges of most machined parts, while fillets can be used decoratively, and should be used on any sharp internal corners. Sharp internal corners create something called a “stress concentrator,” which essentially translates to “sharp corners make your part break easier.” Adding fillets to your internal corners makes these stress concentrators much less problematic, and helps your parts last longer!
+
+![Sharp edges, fillets, and chamfers compared](/mechanical/quickstart/cad-edge-treatments.png)
+
+*Fig 10. From left to right. Nothing, fillets, and chamfers. In reality, a combination of fillets and chamfers is usually the best option.*
+
+## Modeling Consideration
+Every part can be modeled in a near infinite number of ways, but some modeling methods are better than others. When modeling a part you should consider a few things. 
+
+- **Future Proofing**: How easy would it be to modify the part in the future? If you need to make it an inch bigger or smaller, can you?
+- **Passing it in**: If someone else picked up your CAD, could they understand what you were doing? If not, consider naming features to help them.
+- **Simplicity**: The best way to model a part is usually somewhat simple— think about the tools available to you and try to find a method that reduces the number of features used, without requiring crazy complex sketches. Note that this will not always be possible.
+- **Feature Order**: Put your hardware holes, fillets, and chamfers AT THE END of your feature tree, if possible.
+- **Manufacturability**: How could I actually make this part? This is discussed more in [3D Printing](/mechanical/quickstart/3d-printing/) and [Machining](/mechanical/quickstart/machining/)
+
+## Assemblies
+
+Once you have a couple of parts designed, you can toss them into an assembly where you can see them next to each other. When starting an assembly, the first thing you need to do is define your parts in relation with each other. By using the mate feature, you can fix any two parts of different objects in relation to the other, such as making two faces parallel to each other, making two circular parts centered around the same line, or even make the origins of multiple parts be at the same point (including the assembly document as a whole. Please do this first, it will make your lives so much easier).
+
+## Where can I learn more?
+
+CAD is a crazy big field and there is always more to learn. Fortunately, resources are plentiful! If you absolutely fall in love with CAD, you should consider adding a Graphics Communication Minor. If you just want to learn a bit more, I recommend googling whatever your question is. There are endless tutorials on YouTube, LinkedIn, and on the SolidWorks Help Page.
+
+Good luck, and happy CADing!

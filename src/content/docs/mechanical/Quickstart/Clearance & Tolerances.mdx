@@ -1,0 +1,51 @@
+---
+title: Clearance & Tolerances
+sidebar:
+  order: 7
+---
+*Written by Alexandria Epley*
+
+**That’s right! It goes in the TOLERANCED hole…**
+
+Quite possibly the most frustrating thing in engineering is a part that just barely doesn’t fit. You’ve just pulled an all nighter working on the CAD, you checked to make sure nothing interfered in SolidWorks. You slice the part, send it to the printer, pull it off an hour later, and go to put it on SeaWolf. And it doesn’t fit. It looks like it SHOULD fit. It’s a 1 inch hole going onto a 1 inch part. That should fit. But it doesn’t. So you get out the sandpaper, and, in a sleep deprived haze, finally internalize the importance of proper tolerancing. 
+
+## What is Tolerancing?
+Tolerancing is (for the purposes of AquaPack) the art and science of designing your parts so that they fit together in the real world, rather than only in the Land Of CAD (which, now that I think on it, would be a fun setting for a DND campaign). In the real world, nothing is exactly 1 inch. Every part is 1 inch, plus or minus some small amount. So a part that is nominally 1 inch might actually be 1.003 inches. Or, if it was made very precisely, it might be 0.9999999997 inches. And this applies to holes, pegs, squares, circles, life size busts of Sahiti Muddreddy[^president], and everything else you can imagine. What this means is that, if you try to put a 1 inch peg in a 1 inch hole, it probably will not fit. To combat this, we intentionally design our parts to be slightly over or undersized. So, if my manufacturing process had a tolerance of +/- 0.005 inches, I would make my hole 1.011 inches, while leaving my peg at 1.000 inches. That way, even in the worst case, where my hole is 1.006 inches and my peg is 1.005 inches, my peg still fits in my hole. For mass production, the more tolerance you can allow for, the better (it’s cheaper to make a part 1 inch +/- 0.05 inches than it is to make a part 1 inch +/- 0.00000005 inches). For AquaPack, as long as your parts fit together, it's probably fine.
+
+## Clearance Vs Tolerance 
+Clearance & tolerance are related, but are actually different concepts. 
+
+**Tolerance** refers to the acceptable range of your part size. So if a part can be 10mm +/- 1 mm, it has a tolerance of 1 mm. Clearance refers to the gap between two assembled parts. You might require a 0.5mm clearance between your peg and your hole in order for your parts to fit cleanly together. You can ensure that clearance exists in your assembly by adding the right tolerances to your CAD model. (Technically there is a difference between clearance and allowance. For a full breakdown check out this guide - https://jlccnc.com/blog/tolerance-and-allowance)
+
+## How much tolerance should I add to my parts?
+How large of a tolerance a part needs is unfortunately a complicated question to answer. It depends on the manufacturing process you are using, and what percentage of your parts you need to work. There is no clear cut general answer, however, few problems in engineering are truly novel, and you can often find tolerancing and clearance guidelines recommended by a manufacturer or standards provider such as ASME or ISO. 
+
+## For Hardware
+At the level AquaPack operates at, hardware holes are extremely easy to size. There are tolerancing charts for hardware that will tell you the exact hole size and positional variance to use for a loose, normal, or tight clearance fit, and the hole size needed for any tapped holes can also be found easily online. For most through holes, normal is the right fit, but a tight fit is ideal for anything involving penetrators
+
+![Metric hardware chart listing hole sizes for different clearance fits](/mechanical/quickstart/metric-hardware-clearances.jpg)
+
+*Fig 1. Example of a metric hardware tolerancing chart*
+
+## For FDM 3D Printing
+Unlike hardware tolerancing, 3D print tolerances and clearances cannot be summarized accurately in a small chart. The orientation a part is printed in, filament and infill a part is printed in, and what printer a part is printed on all impacts the amount of clearance that is needed. Additionally, since FDM printing invariably involves layer lines and produces anisotropic parts, a clearance that works fine in one orientation may not work fine in another.
+
+In general, though, there are a few rules one can follow for 3D printer clearances. In general, the higher an infill amount is and the stranger an angle is, the more clearance you need. This especially applies to parts printed with holes in their vertical faces, since layer lines tend to make vertical features a bit messy. 
+	
+While an exact standard for every part does not exist, many AquaPack applications share similar sizing needs. Please reference the following chart (which will be coming soon to theaters near you sometime Fall 2026) for some of the common clearances used with AquaPack’s A1 printer.
+
+| This | chart | not | made |
+| ---  | ---   | --- | ---  |
+| yet  | :(    |     |      |
+
+If you want to have this chart exist, talk to mech lead and they will help actualize that.
+
+## For CNC Machining
+Machining is, in general, much more precise than 3D printing. It is also, however, much more costly to redo if messed up. What tolerances should be added to a machined part depends on the material of that part and what manufacturing process was used for that part. Since AquaPack does not have a standardized machining workflow, I recommend looking online for standard tolerancing recommendations.
+
+For hardware holes in a CNC part, make them a normal fit unless they are penetrators, in which case make them a tight fit.
+
+## Tolerance Stack Up
+It’s worth keeping in mind that, in the real world, tolerances have a habit of stacking up. If you have 6 parts that attach together, there is a chance that, while each part is individually within a defined tolerance range, when put together they don’t quite fit. AquaPack doesn’t generally design assemblies with enough stacking parts for this to be an issue, but if your model includes more than 3-4 parts with tolerances that could potentially stack, you should consider tolerancing stack up. Tolerancing stack up is also absolutely essential for industry, especially if a large volume of parts are being produced! Design methodologies for managing tolerancing stack up include worst case analysis, root sum square, and Monte Carlo Simulation.
+
+[^president]: AquaPack President, 2026–2027.

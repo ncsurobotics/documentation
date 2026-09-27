@@ -1,0 +1,84 @@
+---
+title: Machining
+sidebar:
+  order: 9
+---
+*Written by Alexandria Epley*
+
+**i’m really not qualified to write this one**
+Machining, traditional manufacturing, subtractive manufacturing, or whatever you want to call it[^terminology], making parts by cutting material away from a large block has been around since roughly 1300 BCE (if you count two man lathes). As you might imagine, there is a lot to learn about it. And my area of expertise is not, in fact, in machining. So while this document should serve as a decent introduction, I highly recommend talking to someone who’s actually good at this before trying it. If you want to do CNC machining, check out the Titans of CNC Building Blocks series. They have step by step CAD, CAM, and manufacturing for a ton of different parts. That series will do a better job of teaching you CAD, CAM, and CNC machining than this document will, but if you want a quick skim, this document is fine, but seriously, learn more before you try to make something please!
+
+## Manual VS CNC
+There are two main types of machines. Manual/conventional machines (for which all machine movement is controlled by a human), and CNC machines, where a computer is given a toolpath to follow. 
+
+![Comparison of manual and CNC machines](/mechanical/quickstart/manual-and-cnc-machines.jpg)
+
+*Fig. 1 Manual Machine and CNC Machine*
+
+Manual machines are phenomenal for learning how machining works, and basically anything that can be made on a CNC machine can be made on a manual machine with enough time and ingenuity. AquaPack, unfortunately, does not have consistent access to either a manual machine or a (robust) CNC machine. CAMAL has a number of CNC machines, and the MAE senior design lab has a number of manual mills and lathes. There is also a ShopBot in the ECE makerspace, which can be used to cut aluminum. I highly recommend getting trained on the ShopBot (see section below). If you need to make a metal part that can’t be made on the shopbot, talk to the mechanical lead— they usually know which members have access to CAMAL or the senior design lab.
+
+## Lathes
+Lathes are the oldest form of machining machine, and work by spinning stuff real fast. They then cut away at that spinning thing using a lathe bit.
+
+![Lathe diagram with labeled components](/mechanical/quickstart/lathe-parts.png)
+
+*Fig. 2 Labeled lathe parts*
+
+Lathes are good for making round parts. They are used for things like bearings, vases, and anything mostly round. I have never used one. Please talk to someone who has before you try to use one!
+
+## Mills
+Mills are the most common machine used for manufacturing AquaPack’s metal parts. Mills work by spinning around an endmill (which is NOT the same thing as a drill bit. If you try to use a drill bit as an endmill, you WILL HURT OR KILL SOMEONE). They then move the endmill through the X-Y plane, cutting material away from your workpiece. Mills can also drill holes in parts using drill bits. Endmills and drill bits attach to the mill using different chucks. Do not mix their chucks, if you do, you WILL HURT OR KILL SOMEONE. Mills come in both CNC and manual varieties. Mills are good for making parts that aren’t super duper circular and tend to be more versatile than lathes. Most mills are 3-axis. They move the endmill in the x, y, and z directions, but do not rotate the endmill. Some mills are 5 or 6 axis, and can tilt the cutter or part to manufacture crazy geometries.
+
+## Designing for Manufacturability for Mills
+
+![Manual mill diagram with labeled components](/mechanical/quickstart/manual-mill.png)
+
+*Fig. 3 Labeled Manual Mill*
+
+There are a number of considerations when manufacturing a part on a mill that many engineering students overlook. These considerations are different from the considerations for manufacturing a 3D printed part. The most important design considerations are, in my opinion, the following:
+
+### Leaving a big enough corner radius 
+
+Your end mill has a diameter. It cannot cut a corner smaller than that diameter. If you try to cut out a perfectly sharp internal corner, you will quickly realize that physics does not permit that. Leave as large an internal corner radius as possible— the larger the endmill you can use, the faster and easier it will be to manufacture your part. You can also use dogbones if you need to fit a part with sharp corners into a milled shape.
+
+![Internal corner radius left by a round endmill](/mechanical/quickstart/endmill-corner-radius.jpg)
+
+*Fig. 4 End Mill Corner Visual*
+
+![Dogbone corners provide clearance for a mating part with sharp corners](/mechanical/quickstart/dogbone-corners.jpg)
+
+*Fig. 5 Dogbone Corner Visual*
+
+### Don’t make your pockets too deep
+
+Your endmill is not made of unobtanium. It is spinning at high speeds and would really like to wobble around. If you try to cut out a 6 inch deep pocket with a tiny endmill, you will break the endmill. Ideally, no pocket should be cut more than 3 times deeper than the diameter of the endmill used to cut it. This can be stretched some, particularly if you are okay with a not-so-great surface finish on your part, but you should basically never go deeper than 6 times deep.
+
+![Chart illustrating endmill diameter and pocket depth](/mechanical/quickstart/endmill-depth.jpg)
+
+*Fig. 6 Endmill depth chart*
+
+### Avoid Fillets on external edged/Add chamfers to your edges
+
+The outside of your machined edges are going to be sharp. You have two options to make this issue disappear. Fillets are expensive to machine, take forever, and are generally not worth it on sharp edges. Chamfers are cheap, fast, and should be used on outside edges if possible! Otherwise, you get to file off the sharp edges by hand after the part has been manufactured.
+
+![Comparison of chamfered and filleted edges](/mechanical/quickstart/machined-chamfer-fillet.png)
+
+*Fig. 7 Chamfer vs. Fillet*
+
+### How are you going to hold it?
+
+When machining a part, you need to be able to secure it in place. Usually, that means clamping the part down. Make sure you have flats available that can hold your part. Otherwise you will need to develop a custom jig to hold your part. Do not clamp bare clamps onto a circle and then try to machine it. You will ruin your part, get hurt, or both.
+
+## The EBII ShopBot
+
+There is a ShopBot desktop 3 axis CNC router in the ECE makerspace. It can cut wood, foam, plastic, and aluminum. If you would like to get trained on the ShopBot (I highly encourage you to do so), then reach out to the ECE makerspace or sign up for training at https://my.ece.ncsu.edu/makerspace/training/. Note that you must have done the general ECE makerspace training first. 
+
+![ShopBot desktop CNC router](/mechanical/quickstart/shopbot.jpg)
+
+*Fig. 8 ShopBot*
+
+One of our members put together a great guide on how to use the ShopBot for cutting aluminum parts. The SOP he wrote is linked below. After getting trained on the ShopBot, I recommend reading through the ShopBot SOP he wrote prior to machining anything using the ShopBot.
+
+[SHOPBOT SOP](https://docs.google.com/document/d/1_HXRsAV88kf_yQAdoMyOtrdgi0IoQyZF62NZpyjbwOI/edit?tab=t.0)
+
+[^terminology]: Don’t call it subtractive manufacturing in front of a machinist.

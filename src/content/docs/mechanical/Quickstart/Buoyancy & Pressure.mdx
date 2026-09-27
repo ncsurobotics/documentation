@@ -1,0 +1,65 @@
+---
+title: Buoyancy & Pressure
+sidebar:
+  order: 13
+---
+
+*Written by Alexandria Epley and Denver Huffman*
+
+**Cause our robot is supposed to float or whatever :eye roll:**
+
+## What is Pressure?
+
+Pressure is defined as force per unit area (P = F/A). It can be calculated by dividing the force exerted on an object by the area over which that force is applied. For example, a 200 lb bodybuilder in normal shoes (with a 35 in2 area) exerts roughly 5.7 psi (pounds per square inch) of pressure on the ground. If you put that same bodybuilder in stilettos (with a 5 in2 area), they exert 40 psi of pressure! The force they exert has not changed (they still weigh 200lb), but they exert 8 times the pressure!
+
+![Pressure comparison for the same weight distributed over different contact areas](/mechanical/quickstart/pressure-area.jpg)
+
+The pressure-force relationship goes both directions. If you know the pressure exerted on an object and that object's area, you can determine the force experienced by the object! Take for example, a T-shirt cannon! The average T-shirt cannon uses pressurized air at 40 psi. If we assume a 9 in2 area, the shirt experiences 360 lbs of force! Now imagine if you were launching a large jacket with a 16 in2 area! It would experience over 600 lbs of force! This second type of calculation is more common for underwater applications. Note that force exerted by pressure always acts normal to the surface being acted on.
+
+## Pressure from Fluids
+
+Fluids, like the aforementioned bodybuilder, have weight. Air weighs roughly 0.075 lb/ft3, and the weight of all of the air in the atmosphere exerts a fairly constant pressure of 14.7 psi on everything. Water is much denser than air, with a weight of 62 lb/ft3, and as a result exerts significant pressure and force on anything placed deeper than a foot or two.
+
+Due to some interesting properties of fluids, for incompressible fluids (most fluids at our scale) the pressure exerted by a fluid increases linearly with the depth of that fluid. So something 10 ft deep experiences 10x the pressure of something 1 foot deep. For water, the rate of pressure increase is roughly 0.44 psi/ft or 9810 Pa/m. That means something 10 feet deep experiences almost 5 psi of pressure. In other words, an 8 inch diameter end cap experiences 250 lbs of force. At 30 ft deep, that endcap experiences 750 lbs of force! As you might imagine, designing parts to resist that force can be challenging.
+
+![Diagram of pressure increasing with depth in water](/mechanical/quickstart/fluid-pressure.jpg)
+
+Fortunately (as you may intuit if you’ve ever been swimming) the situation is not as dire as it might seem! While it is true that anything underwater experiences a large amount of force, it experiences that force on all sides! If I toss a flat rock underwater, it experiences a large force on its left, but also experiences an equally large force on its right! These forces can, in some scenarios, cancel each other out!
+
+Unfortunately, we are sealing enclosures. As such, our endcaps do not have water on both sides. They have water on one side and air on the other. They experience an external pressure from the water, and an internal pressure from the air inside the enclosure. This leads to a significant pressure difference between the inside and outside of the enclosure, and a large net force on the endcap. Designing such that our enclosures resist this predictable pressure is essential for keeping our batteries dry and our electrical team happy!
+
+## Buoyancy & Archimedes Principle
+
+Now that we’ve talked about pressure, we can talk about buoyancy, which is a property that arises from the fact that pressure varies with depth.
+
+Archimedes Principle states that the upward buoyancy force exerted on an object is equal to the weight of the fluid displaced by the object. This follows mathematically from the depth variant nature of pressure. Imagine you have a rectangular prism, and you place it underwater. The forces on the sides of the prism cancel out, but, because the top and bottom of the prism are at different depths, they experience different forces! It turns out that this difference in force is equal to the volume of the object times the weight of the fluid around the object!
+
+![Diagram illustrating displaced water and buoyant force](/mechanical/quickstart/archimedes-principle.jpg)
+
+This buoyant force does not depend on the material being submerged. Foam stuck underwater experiences the same up force as a block of lead. Foam floats because the buoyant force up is stronger than the force of gravity down, while lead sinks, because the force of gravity down is stronger than the upward push of the buoyancy force.
+
+![Comparison of gravity and buoyancy for floating and sinking objects](/mechanical/quickstart/floating-and-sinking.png)
+
+Archimedes' principle has a number of useful applications, including measuring volumes and densities, but is relevant to AquaPack for one obvious reason— RoboSub requires that vehicles be positively buoyant! By doing buoyancy calculations prior to putting our sub in the water, we can ensure that it will float in a predictable manner— enough to pass a buoyancy test, but not so much that our thrusters cannot submerge it.
+
+## Center of Pressure/Buoyancy
+
+Imagine you have a broom. Your friend Steve bet you $20 you couldn’t balance it on your finger. Unfortunately for Steve, you have the power of PHYSICS on your side. You know that the head of the broom is heavy, so you place your finger close to the head, and BAM, it balances. Congrats! You’ve found the center of gravity of the broom! In other words, you’ve found the point at which, if you were to replace gravity with a constant downward force, the broom would behave the same! Technically, this is a point in 3 dimensional space, and is somewhere inside the broom, but imagining it as being at your finger is close enough for now.
+
+![Illustrations of center of gravity and balancing a broom](/mechanical/quickstart/center-of-gravity.png)
+
+The center of buoyancy acts similarly to the center of gravity. It is the point at which one could replace the buoyant force acting on the object with a point force, without the object's mechanics changing. It can be calculated by pretending like an object is uniformly dense, and then calculating its center of gravity. For a fully submerged object with uniform density, the center of gravity and center of buoyancy are identical. But most objects are not uniformly dense, and the interaction between the CoG and CoB have large impacts on how AUVs behave in the water.
+
+To understand the interaction between the CoG and CoB, imagine you have a domino. Its center of gravity is right in its center. If you were to poke a hole somewhere on the domino, and hang the domino by that hole, it would rotate so that the center of gravity was directly underneath that hole. This is because the gravitational force on the domino creates a torque that rotates the domino until the CoG is directly under the upwards force exerted from the string used to hang it. When the CoG is directly under the hanging point, there is no restorative torque, and the domino is stable!
+
+![A hanging object rotates until its center of gravity is below the suspension point](/mechanical/quickstart/hanging-domino.png)
+
+Now, instead of hanging it from a string, imagine the domino is placed underwater! In order to be stable, the upwards force from buoyancy and the downward force of gravity must be directly on top of each other. So an AUV will rotate until the CoB is directly above the CoG. If this is not accounted for, it can lead to a robot sitting very strangely in the water. As such, the position of your CoG and CoB are just as important as the overall force on your robot!
+
+![Relationship between center of gravity and center of buoyancy in a stable underwater vehicle](/mechanical/quickstart/auv-buoyancy-stability.jpg)
+
+## Calculating Center of Buoyancy in CAD
+
+Thanks to proper documentation of the shapes and materials of the parts of the robot (LOG PART MATERIALS!!!!), we already have a proper idea of the center of gravity of the robot. However, calculating buoyancy requires slightly more effort. This is based on the amount of water displaced by the robot, so the simplest way to find this is to replicate the device but replace the materials with water. This allows us to determine the weight of water displaced, which can then be used with Archimedes principle to find the amount of upward force on the robot. Additionally, the center of buoyancy is based on the center of mass of this new water based device, and most CAD software allows you to find this value with only a few buttons. However, there will be a problem if you just transfer over the values 1 to 1, as the hulls in our robot have large amounts of empty space that do not transfer over when finding the water displaced. To fix this, fill in any areas that will remain filled with air when the robot is submerged in water, to properly display the displacement of the water.
+
+WARNING: Solidworks will attempt to read local files on your computer when working in the PDM, so when copying over files to change the material they use, either use a computer not connected to the PDM or rename every file you are altering so it is not attempting to read two instances of the same file. (The former is much easier). Alternatively, the Pack and Go feature can be used to quickly export an entire assembly with different part names.

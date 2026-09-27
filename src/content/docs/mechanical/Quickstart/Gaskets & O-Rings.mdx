@@ -1,0 +1,71 @@
+---
+title: Gaskets & O-Rings
+sidebar:
+  order: 17
+---
+
+*Written by Alexandria Epley*
+
+**"All of my screws are in order, thank you very much. It's my O-rings you should be worried about"**
+
+## What is a Gasket?
+
+A gasket is any piece of material compressed between two faces to create a water (or oil, or air) tight seal. Gaskets are usually made of some type of rubber, and are most commonly circular. They are typically flat, and are widely used across a number of industries. Everything from a car engine to a pelican case to your refrigerator uses some type of gasket.
+
+![Engine and flange gaskets alongside the SeaWolf VIII Intel RealSense camera hull](/mechanical/quickstart/gasket-examples.png)
+
+*Fig 1. Examples of gaskets, include the SWVIII Intel RealSense Hull*
+
+Gaskets come in a wide array of shapes and sizes, and can be used to seal underwater enclosures. The bottom camera hull for SWIX currently (7/20/2026) uses a custom gasket, cut from a sheet of rubber gasket material. Gaskets are incredibly versatile, and can be used for a wide array of applications. Gaskets can be cut to essentially any shape imaginable, which makes them useful for oddly shaped face seals.
+
+![Gasket sheet stock and a rectangular gasket cut from a sheet](/mechanical/quickstart/gasket-sheet-stock.png)
+
+*Fig 2. Gasket sheet stock can be purchased and cut into custom shapes*
+
+## What is an O-Ring?
+
+An O-ring is a special type of gasket (some people argue they’re completely different things, I tend to think it’s a squares and rectangles situation). O-Rings have a circular cross section and are circular in shape. They are widely used for both face seals (in which two faces are pressed together with an O-ring in between them), and radial seals (in which two concentric cylinders are fit together, compressing an O-ring between them). O-rings are incredibly common, as they are cheap, reliable, and form a very forgiving seal.
+
+![Face and radial O-ring seal diagrams beside a collection of small O-rings](/mechanical/quickstart/face-and-radial-seals.png)
+
+*Fig 3. Left - Example of face and radial seals, Right - Photo of small O-rings*
+
+The one issue with O-rings is that they are, well, circular. If you have a sealing shape that requires sharp corners, you cannot use an O-ring. It is possible to use an O-ring in something called a racetrack groove, provided one ensures the corner radius of the groove is at least 3 times the diameter of the O-ring, or, in a perfect world, at least 6 times the diameter of the O-ring. A racetrack groove of this variety is used on the ZEDxMini camera hull of SWIX.
+
+![An O-ring in a racetrack groove and the SeaWolf IX ZEDxMini camera hull](/mechanical/quickstart/racetrack-o-ring.png)
+
+*Fig 4. Example of a racetrack groove O-ring, and the ZEDxMini hull of SWIX*
+
+## How Do They Work?
+
+As an O-ring or gasket is compressed, it fills in voids in the surfaces it is pressed against. Under enough pressure, this creates a watertight seal. Flat gaskets rely primarily on the compressive force of the faces they are squished between, and physically fill in all of the imperfections in the materials they are pressed against. O-rings and gaskets should be greased before use. The grease helps to fill in these small gaps, and reduces wear on the O-ring or gasket.
+
+![An under-compressed gasket leaves a leak path along an uneven enclosure surface](/mechanical/quickstart/gasket-leak-path.jpg)
+
+O-rings work slightly differently. At low pressures, O-rings function similarly to gaskets. As pressure increases, O-rings are pushed up against the side of the O-ring groove, creating a tighter and tighter seal. This allows O-rings to increase their sealing strength as pressure increases, making them very robust despite their simple design. If pressure increases too much, the O-ring can be extruded out of their groove, ripping, and breaking the seal. But this generally does not occur until well over 1000 psi (roughly 2300 feet deep!).
+
+![O-ring under low pressure, sealing pressure, and excessive pressure causing extrusion](/mechanical/quickstart/o-ring-compression.jpg)
+
+*Fig 6. O-rings under compression. From left to right: Low pressure, Sealing pressure, Over extrusion pressure*
+
+## Sizing an O-Ring
+
+O-rings and gaskets both typically fit into grooves that are sized specifically for them. Sizing these grooves is fairly simple. For any and all O-ring sizing questions, the gold standard reference is the [Parker O-Ring Handbook](https://www.parker.com/content/dam/Parker-com/Literature/Praedifa/Catalogs/Catalog_O-Ring-Handbook_PTD5705-EN.pdf). Parker makes O-Rings, and they want to make your life easy so that you buy their O-rings. In general, there are two dimensions you should care about when designing an O-ring groove: the diameter of the cross section of the O-ring and the inner diameter of the O-ring.
+
+![O-ring dimensions: inner diameter, outer diameter, and cross-section diameter](/mechanical/quickstart/o-ring-dimensions.jpg)
+
+*Fig 7. Diagram of an O-ring*
+
+The cross section diameter affects the O-rings' robustness. Larger rings require more compression force, but are more robust to surface imperfections. Small cross sections require less compression force, but require precisely machined grooves. In general, AquaPack generally uses 1/16 to 1/4 inch diameter O-rings. I would recommend starting with a 1/8th or 1/4 inch diameter unless you have specific reasons to choose something else.
+
+The inner and outer diameters of the O-ring should be selected based on the size of the face you need to seal. I would design your enclosure, figure out roughly the diameter you need, pick the off the shelf O-ring closest to that, and then adjust your enclosure design accordingly.
+
+To determine the shape of your O-ring groove, first, select an O-ring. Then reference the O-ring design guidelines in the Parker O-ring book (example charts can be found at the bottom of this section). Note that O-rings are fairly forgiving, so it’s ok if your machined groove isn’t perfect, but you should aim to be as close to the parker standard as possible.
+
+## Material Selection
+
+Material compatibility can be found in the Parker O-ring handbook, but as a general rule of thumb, when working in both chlorinated and salt water environments, safe O-ring materials include EPDM and FKM. EPDM is generally much cheaper, and is preferred for AquaPack robotics purposes. Note the EPDM is NOT compatible with oils. If greasing EPDM, use silicone-based grease, NOT oil based grease.
+
+## Example Groove Sizing Charts from the Parker Handbook
+
+![Parker handbook example groove-sizing charts for O-ring seals](/mechanical/quickstart/o-ring-groove-sizing.png)
